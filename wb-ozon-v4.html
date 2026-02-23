@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D Печать → Продажи | Гайд 2026 | Беларусь</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --card: #1a1a26;
+    --accent: #ff6b35;
+    --accent2: #7c3aed;
+    --accent3: #06d6a0;
+    --text: #e8e8f0;
+    --muted: #6b6b8a;
+    --border: rgba(255,255,255,0.07);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background:
+      radial-gradient(ellipse 80vw 60vh at 15% 10%, rgba(124,58,237,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 60vw 50vh at 85% 80%, rgba(255,107,53,0.10) 0%, transparent 60%),
+      radial-gradient(ellipse 40vw 40vh at 50% 45%, rgba(6,214,160,0.05) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 60px 0 44px;
+    text-align: center;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,107,53,0.12);
+    border: 1px solid rgba(255,107,53,0.3);
+    border-radius: 100px;
+    padding: 6px 18px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .year-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(6,214,160,0.1);
+    border: 1px solid rgba(6,214,160,0.25);
+    border-radius: 100px;
+    padding: 4px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    animation: fadeUp 0.5s 0.05s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(26px, 7vw, 52px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    animation: fadeUp 0.5s 0.1s ease both;
+  }
+
+  .hero h1 span {
+    background: linear-gradient(135deg, var(--accent) 0%, #ff9a6c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero p {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 500px;
+    margin: 0 auto 36px;
+    animation: fadeUp 0.5s 0.15s ease both;
+  }
+
+  .nav-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 60px;
+    animation: fadeUp 0.5s 0.2s ease both;
+  }
+
+  .nav-pill {
+    display: inline-block;
+    padding: 8px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .nav-pill:hover { border-color: var(--accent); color: var(--accent); background: rgba(255,107,53,0.08); }
+
+  /* SECTIONS */
+  .section { margin-bottom: 48px; animation: fadeUp 0.5s ease both; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .section-num {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    background: rgba(255,107,53,0.1);
+    border: 1px solid rgba(255,107,53,0.2);
+    border-radius: 8px;
+    padding: 4px 10px;
+    white-space: nowrap;
+    letter-spacing: 0.05em;
+  }
+
+  .section-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(17px, 4vw, 23px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 22px;
+    margin-bottom: 14px;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,107,53,0.4), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .card:hover { border-color: rgba(255,107,53,0.22); transform: translateY(-2px); }
+  .card:hover::before { opacity: 1; }
+
+  .card-icon { font-size: 26px; margin-bottom: 10px; display: block; }
+
+  .card h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .card p, .card li {
+    font-size: 14px;
+    color: rgba(232,232,240,0.75);
+    line-height: 1.7;
+  }
+
+  .card ul { list-style: none; padding: 0; }
+
+  .card ul li {
+    padding: 4px 0;
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .card ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* GRID */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  @media (max-width: 540px) {
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+
+  /* TIP / WARN */
+  .tip {
+    background: linear-gradient(135deg, rgba(6,214,160,0.08), rgba(6,214,160,0.03));
+    border: 1px solid rgba(6,214,160,0.22);
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin: 14px 0;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .tip-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+  .tip p { font-size: 13.5px; color: rgba(6,214,160,0.85); line-height: 1.6; }
+  .tip strong { color: #06d6a0; }
+
+  .warn {
+    background: rgba(255,107,53,0.07);
+    border: 1px solid rgba(255,107,53,0.2);
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin: 14px 0;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .warn p { font-size: 13.5px; color: rgba(255,107,53,0.85); line-height: 1.6; }
+  .warn strong { color: var(--accent); }
+
+  /* STEPS */
+  .steps { }
+
+  .step {
+    display: flex;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .step:last-child { border-bottom: none; }
+
+  .step-n {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 11px;
+    font-weight: 900;
+    color: white;
+  }
+
+  .step-content h4 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+
+  .step-content p { font-size: 13.5px; color: rgba(232,232,240,0.7); }
+  .step-content a { color: var(--accent); text-decoration: none; }
+  .step-content a:hover { text-decoration: underline; }
+
+  /* HIGHLIGHT */
+  .highlight {
+    background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(255,107,53,0.07));
+    border: 1px solid rgba(124,58,237,0.18);
+    border-radius: 20px;
+    padding: 24px;
+    margin: 20px 0;
+  }
+
+  .highlight h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #a78bfa, #f472b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* TABLE */
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 16px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; background: var(--card); }
+
+  th {
+    background: rgba(124,58,237,0.18);
+    padding: 10px 14px;
+    text-align: left;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #a78bfa;
+    white-space: nowrap;
+  }
+
+  td { padding: 11px 14px; border-bottom: 1px solid var(--border); color: rgba(232,232,240,0.8); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* PRICE LIST */
+  .price-list { display: flex; flex-direction: column; gap: 8px; }
+
+  .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: var(--surface);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .price-name { font-size: 13.5px; font-weight: 500; }
+  .price-val { font-family: 'Unbounded', sans-serif; font-size: 12px; font-weight: 700; color: var(--accent); }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 44px 0;
+  }
+
+  /* TAG */
+  .tag {
+    display: inline-block;
+    background: rgba(124,58,237,0.1);
+    border: 1px solid rgba(124,58,237,0.2);
+    color: #a78bfa;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 2px;
+  }
+
+  .tag.green { background: rgba(6,214,160,0.1); border-color: rgba(6,214,160,0.2); color: var(--accent3); }
+  .tag.orange { background: rgba(255,107,53,0.1); border-color: rgba(255,107,53,0.2); color: var(--accent); }
+  .tag.red { background: rgba(239,68,68,0.1); border-color: rgba(239,68,68,0.2); color: #ef4444; }
+
+  /* CALLOUT BIG */
+  .callout-big {
+    background: linear-gradient(135deg, rgba(255,107,53,0.1), rgba(255,107,53,0.04));
+    border: 1px solid rgba(255,107,53,0.2);
+    border-radius: 20px;
+    padding: 24px;
+    margin: 20px 0;
+    text-align: center;
+  }
+
+  .callout-big .val {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(28px, 7vw, 44px);
+    font-weight: 900;
+    color: var(--accent);
+    display: block;
+    margin: 6px 0;
+  }
+
+  .callout-big .lbl { font-size: 13px; color: var(--muted); }
+
+  .callout-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+
+  @media (max-width: 400px) { .callout-grid { grid-template-columns: 1fr; } }
+
+  /* CHECKLIST */
+  .checklist-section {
+    background: linear-gradient(135deg, var(--card), rgba(26,26,38,0.4));
+    border: 1px solid rgba(255,107,53,0.18);
+    border-radius: 24px;
+    padding: 28px;
+    margin: 48px 0 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .checklist-section::after {
+    content: '✓';
+    position: absolute;
+    right: -15px;
+    top: -25px;
+    font-size: 160px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    color: rgba(255,107,53,0.04);
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .checklist-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(19px, 5vw, 26px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+
+  .checklist-sub { color: var(--muted); font-size: 13.5px; margin-bottom: 24px; }
+
+  .check-group { margin-bottom: 22px; }
+
+  .check-group-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 8px;
+    transition: background 0.15s;
+    padding: 7px 10px;
+    margin: 0 -10px;
+  }
+
+  .check-item:hover { background: rgba(255,255,255,0.03); }
+  .check-item input[type="checkbox"] { display: none; }
+
+  .check-box {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    border: 2px solid rgba(255,255,255,0.14);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.18s;
+    margin-top: 2px;
+  }
+
+  .check-box::after {
+    content: '✓';
+    font-size: 12px;
+    font-weight: 900;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+
+  .check-item.done .check-box { background: var(--accent3); border-color: var(--accent3); }
+  .check-item.done .check-box::after { opacity: 1; }
+  .check-item.done .check-label { text-decoration: line-through; opacity: 0.4; }
+
+  .check-label { font-size: 14px; color: var(--text); line-height: 1.5; transition: opacity 0.2s; }
+
+  .progress-bar { background: rgba(255,255,255,0.06); border-radius: 100px; height: 6px; margin-bottom: 6px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent3)); border-radius: 100px; width: 0%; transition: width 0.4s ease; }
+  .progress-text { font-size: 12px; color: var(--muted); margin-bottom: 22px; }
+
+  /* DOT NAV */
+  .dot-nav {
+    position: fixed;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 100;
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.14);
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    padding: 0;
+  }
+
+  .dot.active { background: var(--accent); height: 20px; border-radius: 4px; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 36px 20px 60px;
+    color: var(--muted);
+    font-size: 12.5px;
+    position: relative;
+    z-index: 1;
+  }
+
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section { opacity: 0; animation: fadeUp 0.5s ease both; }
+  .section:nth-child(1) { animation-delay: 0.05s; }
+  .section:nth-child(2) { animation-delay: 0.15s; }
+  .section:nth-child(3) { animation-delay: 0.25s; }
+  .section:nth-child(4) { animation-delay: 0.3s; }
+  .section:nth-child(5) { animation-delay: 0.35s; }
+  .section:nth-child(6) { animation-delay: 0.4s; }
+
+  @media (max-width: 600px) {
+    .dot-nav { display: none; }
+    .container { padding: 0 14px; }
+    .checklist-section { padding: 18px; }
+    .card { padding: 16px; }
+    .hero { padding: 36px 0 24px; }
+  }
+
+  /* NEW / UPD BADGE */
+  .upd {
+    display: inline-block;
+    background: rgba(6,214,160,0.12);
+    border: 1px solid rgba(6,214,160,0.25);
+    color: var(--accent3);
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  .new-tag {
+    display: inline-block;
+    background: rgba(239,68,68,0.12);
+    border: 1px solid rgba(239,68,68,0.25);
+    color: #f87171;
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* ===== CALCULATOR ===== */
+  .calc-section {
+    background: linear-gradient(135deg, rgba(26,26,38,0.95), rgba(18,18,26,0.98));
+    border: 1px solid rgba(124,58,237,0.22);
+    border-radius: 24px;
+    padding: 32px;
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .calc-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent2), var(--accent), var(--accent3));
+    border-radius: 24px 24px 0 0;
+  }
+  .calc-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(17px, 4.5vw, 22px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+  .calc-sub { color: var(--muted); font-size: 13px; margin-bottom: 26px; line-height: 1.6; }
+  .calc-block {
+    background: rgba(255,255,255,0.028);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 12px;
+  }
+  .calc-block-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--muted);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .field-row:last-child { margin-bottom: 0; }
+  .field-row.single { grid-template-columns: 1fr; }
+  .field-row.three { grid-template-columns: 1fr 1fr 1fr; }
+  @media (max-width: 520px) {
+    .field-row { grid-template-columns: 1fr; }
+    .field-row.three { grid-template-columns: 1fr 1fr; }
+    .calc-section { padding: 16px; }
+  }
+  .field { display: flex; flex-direction: column; gap: 5px; }
+  .field label { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; }
+  .field input[type="number"], .field select {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1.5px solid rgba(255,255,255,0.09);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 9px 13px;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+  }
+  .field input[type="number"]:focus, .field select:focus {
+    border-color: rgba(124,58,237,0.6);
+    background: rgba(124,58,237,0.07);
+    box-shadow: 0 0 0 3px rgba(124,58,237,0.1);
+  }
+  .field .hint { font-size: 11px; color: var(--muted); opacity: 0.7; }
+  .field select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6b8a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+  }
+  .field select option { background: #1a1a26; color: var(--text); }
+  .calc-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    transition: opacity 0.2s, transform 0.15s;
+    margin-top: 6px;
+  }
+  .calc-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+  .calc-btn:active { transform: translateY(0); }
+  .calc-result {
+    background: linear-gradient(135deg, rgba(6,214,160,0.07), rgba(6,214,160,0.02));
+    border: 1px solid rgba(6,214,160,0.18);
+    border-radius: 20px;
+    padding: 22px;
+    margin-top: 18px;
+    display: none;
+  }
+  .calc-result.visible { display: block; animation: fadeUp 0.4s ease both; }
+  .calc-result-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--accent3);
+    margin-bottom: 18px;
+  }
+  .result-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+  @media (max-width: 400px) { .result-cards { grid-template-columns: 1fr; } }
+  .rcard {
+    background: rgba(0,0,0,0.3);
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .rcard.big { grid-column: 1 / -1; background: linear-gradient(135deg, rgba(255,107,53,0.14), rgba(255,107,53,0.04)); border-color: rgba(255,107,53,0.22); }
+  .rcard .rl { font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; margin-bottom: 4px; }
+  .rcard .rv { font-family: 'Unbounded', sans-serif; font-size: clamp(16px, 4vw, 24px); font-weight: 900; display: block; }
+  .rcard.big .rv { color: var(--accent); font-size: clamp(20px, 5vw, 30px); }
+  .rcard .rs { font-size: 10.5px; color: var(--muted); margin-top: 2px; }
+  .breakdown { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+  .brow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    font-size: 13px;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .brow .bn { color: rgba(232,232,240,0.65); font-size: 12.5px; }
+  .brow .bv { font-weight: 700; font-size: 13px; }
+  .bv.red { color: #f87171; }
+  .bv.green { color: var(--accent3); }
+  .bv.orange { color: var(--accent); }
+  .bv.muted { color: var(--muted); }
+  .margin-section { margin-top: 14px; }
+  .margin-labels { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--muted); margin-bottom: 6px; }
+  .mbar { height: 10px; border-radius: 100px; background: rgba(255,255,255,0.05); overflow: hidden; }
+  .mfill { height: 100%; border-radius: 100px; transition: width 0.6s cubic-bezier(.4,0,.2,1), background 0.4s; }
+  .verdict {
+    margin-top: 12px;
+    padding: 11px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.5;
+  }
+  .verdict.good { background: rgba(6,214,160,0.1); color: var(--accent3); border: 1px solid rgba(6,214,160,0.2); }
+  .verdict.ok { background: rgba(251,191,36,0.1); color: #fbbf24; border: 1px solid rgba(251,191,36,0.2); }
+  .verdict.bad { background: rgba(248,113,113,0.1); color: #f87171; border: 1px solid rgba(248,113,113,0.2); }
+  .min-price-note {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: rgba(124,58,237,0.08);
+    border: 1px solid rgba(124,58,237,0.18);
+    border-radius: 10px;
+    font-size: 12.5px;
+    color: #c4b5fd;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+</style>
+</head>
+<body>
+
+<nav class="dot-nav" aria-label="Навигация">
+  <button class="dot active" onclick="scrollToSection(0)" title="Принтер"></button>
+  <button class="dot" onclick="scrollToSection(1)" title="Настройка"></button>
+  <button class="dot" onclick="scrollToSection(2)" title="Продажи"></button>
+  <button class="dot" onclick="scrollToSection(3)" title="Маркетплейсы"></button>
+  <button class="dot" onclick="scrollToSection(4)" title="Налоги"></button>
+  <button class="dot" onclick="scrollToSection(5)" title="Калькулятор"></button>
+  <button class="dot" onclick="scrollToSection(6)" title="Чек-лист"></button>
+</nav>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="year-badge">✦ Актуально февраль 2026</div>
+    <div class="hero-badge">🔥 Полный гайд для новичка</div>
+    <h1>3D Печать<br><span>→ Продажи</span><br>с нуля</h1>
+    <p>От распаковки Bambu Lab A1 до первых заказов на Wildberries и Ozon в Беларуси. Актуальные налоги, МЗП и правила 2026 года.</p>
+    <nav class="nav-pills">
+      <a href="#printer" class="nav-pill">🖨️ Принтер</a>
+      <a href="#setup" class="nav-pill">⚙️ Настройка</a>
+      <a href="#business" class="nav-pill">💡 Что продавать</a>
+      <a href="#markets" class="nav-pill">🛒 Маркетплейсы</a>
+      <a href="#taxes" class="nav-pill">📋 Налоги 2026</a>
+      <a href="#calc" class="nav-pill">🧮 Калькулятор</a>
+      <a href="#checklist" class="nav-pill">✅ Чек-лист</a>
+    </nav>
+  </div>
+
+  <!-- SECTION 1 -->
+  <section class="section" id="printer">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Bambu Lab A1 — твой первый принтер</h2>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">📦</span>
+      <h3>Что входит в коробку</h3>
+      <ul>
+        <li>Рама принтера (частично собрана на заводе)</li>
+        <li>Печатающая головка (toolhead)</li>
+        <li>Тестовая катушка PLA Basic</li>
+        <li>Инструменты, кабели, запасные сопла</li>
+        <li>Магнитная гибкая платформа (стальной лист)</li>
+      </ul>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <p><strong>Совет от меня:</strong> Поставь принтер на жёсткий стол вдали от окон и кондиционера. Сквозняк — главный враг первого слоя. Идеально — полка в шкафу или отдельный стол без вибраций.</p>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">🔧</span>
+      <h3>Сборка за 20 минут</h3>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-content"><h4>Распаковка и проверка</h4><p>Достань принтер вертикально, не переворачивай. Найди все части из листа-вложения.</p></div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-content"><h4>Установи вертикальную стойку</h4><p>Прикрепи Z-ось к основанию — 4 винта снизу. Ключ в комплекте.</p></div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-content"><h4>Навесь печатающую голову</h4><p>Toolhead на X-каретку, кабели до щелчка.</p></div></div>
+        <div class="step"><div class="step-n">4</div><div class="step-content"><h4>Подключи питание и Wi-Fi</h4><p>Подключи к сети. Wi-Fi удобнее USB — управление с телефона через Bambu Handy.</p></div></div>
+        <div class="step"><div class="step-n">5</div><div class="step-content"><h4>Full Calibration — обязательно!</h4><p>На экране: Calibration → Full Calibration. ~15 минут. A1 выравнивает стол автоматически — не пропускай!</p></div></div>
+      </div>
+    </div>
+
+    <div class="warn">
+      <span class="tip-icon">⚠️</span>
+      <p><strong>Важно:</strong> Без Full Calibration первый слой будет плохим. Повторяй калибровку каждый раз, когда меняешь материал или переставляешь принтер.</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 2 -->
+  <section class="section" id="setup">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Программы и первая печать</h2>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">💻</span>
+      <h3>Bambu Studio — твой главный инструмент</h3>
+      <p>Слайсер — программа, которая превращает 3D-модель в код для принтера. Для A1 используй <strong>Bambu Studio</strong> (бесплатно, скачай с сайта Bambu Lab). Есть версии для Windows, Mac, Linux.</p>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">🎯</span>
+      <h3>Базовые настройки на старте</h3>
+      <ul>
+        <li>Профиль принтера: <strong>Bambu Lab A1 0.4 nozzle</strong></li>
+        <li>Материал: <strong>Bambu PLA Basic</strong> (пресет встроен)</li>
+        <li>Скорость: <strong>Standard</strong> — не меняй первые 50 часов</li>
+        <li>Infill: 15% для декора, 40% для функциональных деталей</li>
+        <li>Поддержки: включай только если угол нависания > 45°</li>
+        <li>Brim (поле адгезии): 5 мм для небольших деталей</li>
+      </ul>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <span class="card-icon">📁</span>
+        <h3>Где брать модели</h3>
+        <ul>
+          <li><strong>Makerworld.com</strong> (от Bambu)</li>
+          <li>Printables.com</li>
+          <li>Thingiverse.com</li>
+          <li>Cults3D.com (платные)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="card-icon">🎨</span>
+        <h3>Создать свои модели</h3>
+        <ul>
+          <li><strong>TinkerCAD</strong> (онлайн, для новичков)</li>
+          <li>Fusion 360 (бесплатно)</li>
+          <li>Blender (бесплатно)</li>
+          <li>SketchUp (онлайн)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">🚀</span>
+      <p><strong>Первая печать:</strong> Напечатай <strong>3DBenchy</strong> — маленький кораблик. Он показывает все возможные проблемы принтера. Это стандартный тест в 3D-сообществе — по нему сразу видно, всё ли в порядке.</p>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">🧵</span>
+      <h3>Пластик для продажи — цены 2026 в Беларуси</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Материал</th><th>Применение</th><th>Цена в РБ</th></tr>
+          <tr><td><strong>PLA Basic</strong></td><td>Декор, органайзеры, игрушки</td><td>~50–90 BYN/кг</td></tr>
+          <tr><td><strong>PLA Matte</strong></td><td>Декор, фигурки, подарки</td><td>~80–100 BYN/кг</td></tr>
+          <tr><td><strong>PETG</strong></td><td>Функционал, влагостойкость</td><td>~70–110 BYN/кг</td></tr>
+          <tr><td><strong>ABS/ABS+</strong></td><td>Прочные, жаропрочные детали</td><td>~50–90 BYN/кг</td></tr>
+          <tr><td><strong>TPU</strong></td><td>Гибкие изделия, чехлы</td><td>~150–299 BYN/кг</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">💸</span>
+      <p><strong>Лайфхак по пластику:</strong> Bambu-брендовые катушки красивее, но дороже. Для старта бери сторонние бренды — eSUN, U3print, Alfa-filament (белорусское производство). Дешевле в 1.5–2 раза при том же качестве.</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 3 -->
+  <section class="section" id="business">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Что продавать и как считать цену</h2>
+    </div>
+
+    <div class="highlight">
+      <h3>💡 Мой главный инсайт</h3>
+      <p style="font-size:14px; color: rgba(232,232,240,0.8);">Не изобретай велосипед в первый месяц. Зайди на WB или OZON, найди уже продающиеся 3D-печатные товары — и сделай то же самое, но лучше: качественнее напечатай, упакуй красивее, сфотографируй профессиональнее. Первые 3 месяца — это школа, не бизнес.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <span class="card-icon">🏆</span>
+        <h3>Топ для старта</h3>
+        <ul>
+          <li>Органайзеры на стол</li>
+          <li>Подставки под телефон</li>
+          <li>Держатели кабелей</li>
+          <li>Настенные крючки</li>
+          <li>Подставки для наушников</li>
+          <li>Держатели для пульта</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="card-icon">🎯</span>
+        <h3>С хорошей маржой</h3>
+        <ul>
+          <li>Декор (вазы, рамки)</li>
+          <li>Хранение настолок</li>
+          <li>Монтессори-игрушки</li>
+          <li>Аксессуары для авто</li>
+          <li>Флексибл-игрушки (TPU)</li>
+          <li>Сезонный декор</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">💰</span>
+      <h3>Как считать цену продажи</h3>
+      <div class="price-list">
+        <div class="price-row"><span class="price-name">Себестоимость пластика на изделие</span><span class="price-val">× 4–5</span></div>
+        <div class="price-row"><span class="price-name">+ Электричество (~0.7–1 BYN/час печати)</span><span class="price-val">в себестоимость</span></div>
+        <div class="price-row"><span class="price-name">+ Комиссия WB/OZON</span><span class="price-val">~15–25% от цены</span></div>
+        <div class="price-row"><span class="price-name">+ Налог (ОСН с ЕН)</span><span class="price-val">ЕН — фикс/мес</span></div>
+        <div class="price-row"><span class="price-name">+ Упаковка (пленка, коробка, вкладыш)</span><span class="price-val">~1–3 BYN/шт</span></div>
+      </div>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">📊</span>
+      <p><strong>Формула минимальной цены:</strong> (пластик + электро + упаковка) × 5 ÷ 0.78 = цена продажи. Коэффициент 0.78 учитывает ~22% комиссию маркетплейса. Итог даёт ~20–25% прибыли.</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 4 -->
+  <section class="section" id="markets">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Регистрация на WB и Ozon</h2>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">🛍️</span>
+      <h3>Wildberries — регистрация продавца</h3>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-content"><h4>partners.wb.ru → Стать продавцом</h4><p>Регистрация для ИП из Беларуси доступна. Выбери страну — Беларусь.</p></div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-content"><h4>Заполни анкету</h4><p>Название магазина, тип продавца (ИП), контакты, подтверди телефон.</p></div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-content"><h4>Загрузи документы</h4><p>Свидетельство о регистрации ИП, паспорт, УНП.</p></div></div>
+        <div class="step"><div class="step-n">4</div><div class="step-content"><h4>Оплати вступительный взнос</h4><p>WB берёт разовый взнос ~30 000 RUB (уточняй актуальную сумму при регистрации — меняется).</p></div></div>
+        <div class="step"><div class="step-n">5</div><div class="step-content"><h4>Создай карточки товаров</h4><p>Фото, описание, характеристики, цена. Чем лучше карточка — тем выше в поиске.</p></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">🟡</span>
+      <h3>Ozon — регистрация продавца</h3>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-content"><h4>seller.ozon.ru → Стать продавцом</h4><p>Выбери тип — ИП. Белорусское ИП принимается.</p></div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-content"><h4>Заполни данные компании</h4><p>Название, УНП, банковские реквизиты белорусского счёта.</p></div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-content"><h4>Подпиши оферту</h4><p>Всё онлайн, только галочки. Верификация — 1–3 рабочих дня.</p></div></div>
+        <div class="step"><div class="step-n">4</div><div class="step-content"><h4>Выбери модель работы</h4><p>FBS (отправка со своего склада) — идеально для старта. Меньше затрат, больше контроля.</p></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">📸</span>
+      <h3>Карточка товара — твоя витрина</h3>
+      <ul>
+        <li>Главное фото: белый или нейтральный фон, изделие занимает 80% кадра</li>
+        <li>Сделай 5–8 фото: разные ракурсы, применение в интерьере, размеры</li>
+        <li>Добавь видео 15–30 сек — конверсия растёт на 30–50%</li>
+        <li>В описании: сначала ключевые слова, потом выгоды, потом характеристики</li>
+        <li>Укажи точные размеры (мм/см), вес и материал (PLA, PETG)</li>
+      </ul>
+    </div>
+
+    <div class="warn">
+      <span class="tip-icon">⚠️</span>
+      <p><strong>Внимание!</strong> Детские товары (игрушки, посуда, изделия для детей до 14 лет) требуют обязательного сертификата соответствия в Беларуси. Без него продажи запрещены, а штрафы значительные.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <span class="card-icon">📦</span>
+        <h3>Упаковка</h3>
+        <ul>
+          <li>Пузырчатая плёнка</li>
+          <li>Крафт-пакет или коробка</li>
+          <li>Самоклеящийся ярлык со штрихкодом</li>
+          <li>Вкладыш с благодарностью и QR-кодом</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="card-icon">⭐</span>
+        <h3>Первые отзывы</h3>
+        <ul>
+          <li>Попроси близких купить и оценить</li>
+          <li>Вкладывай записку с просьбой</li>
+          <li>Отвечай на ВСЕ отзывы</li>
+          <li>Плохой отзыв = возможность показать сервис</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 5 — TAXES 2026 -->
+  <section class="section" id="taxes">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Налоги и регистрация в Беларуси <span class="upd">2026</span></h2>
+    </div>
+
+    <div class="warn">
+      <span class="tip-icon">🇧🇾</span>
+      <p><strong>Работать без ИП нельзя.</strong> Продажа через маркетплейсы — это предпринимательская деятельность. Регистрируйся до первой продажи. Штраф за незаконную предпринимательскую деятельность — до 100 базовых величин.</p>
+    </div>
+
+    <!-- KEY NUMBERS 2026 -->
+    <div class="callout-grid">
+      <div class="callout-big">
+        <span class="lbl">МЗП с 1 января 2026</span>
+        <span class="val">858 BYN</span>
+        <span class="lbl">в месяц</span>
+      </div>
+      <div class="callout-big">
+        <span class="lbl">12 МЗП за 2026 год</span>
+        <span class="val">10 296 BYN</span>
+        <span class="lbl">порог для ФСЗН</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">📝</span>
+      <h3>Шаг 1: Открытие ИП</h3>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-content"><h4>Определи ОКЭД</h4><p>Для 3D-печати и продаж нужно указать: <strong>32.99</strong> — производство прочих изделий, <strong>47.91</strong> — интернет-торговля. Укажи оба при регистрации.</p></div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-content"><h4>Подай заявку</h4><p>Онлайн через <a href="https://egr.gov.by" target="_blank">egr.gov.by</a> с ЭЦП или лично в исполком. Госпошлина — 0.5 базовой величины (~19 BYN в 2026 году).</p></div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-content"><h4>Получи свидетельство + УНП</h4><p>Срок — 1 рабочий день. УНП (учётный номер плательщика) нужен для маркетплейсов.</p></div></div>
+        <div class="step"><div class="step-n">4</div><div class="step-content"><h4>Открой расчётный счёт в банке</h4><p>Любой белорусский банк. Нужен для получения выплат от WB и OZON.</p></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">💼</span>
+      <h3>Шаг 2: Системы налогообложения для ИП в 2026 году <span class="new-tag">изменения!</span></h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Система</th><th>Ставка</th><th>Особенности 2026</th><th>Подходит?</th></tr>
+          <tr>
+            <td><strong>Единый налог (ЕН)</strong></td>
+            <td>Фиксированная ставка/мес по виду деятельности</td>
+            <td>С 2026: только ограниченный перечень видов деятельности. Доплата 6% при превышении 40-кратной ставки. Ставки выросли на ~6.7%</td>
+            <td><span class="tag red">Проверь перечень!</span></td>
+          </tr>
+          <tr>
+            <td><strong>ОСН (общая система)</strong></td>
+            <td>20% подоходного от прибыли (доходы минус расходы)</td>
+            <td>Для ИП с оборотом до 500 000 BYN — 20%, свыше — 30%. УСН для ИП отменена с 2023 г.</td>
+            <td><span class="tag green">Основной режим</span></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <h3>🚨 Важно: УСН для ИП отменена с 2023 года!</h3>
+      <p style="font-size:14px; color: rgba(232,232,240,0.8);">Многие источники ещё пишут про УСН для ИП — это уже неактуально. С 2023 года ИП в Беларуси работают только на <strong>Общей системе налогообложения (ОСН)</strong> или <strong>Едином налоге</strong>. Единый налог в 2026 году стал более «точечным» — проверь, входит ли твой вид деятельности в разрешённый перечень на nalog.gov.by.<br><br>Для продаж через интернет (маркетплейсы) — скорее всего, ОСН: платишь 20% подоходного налога с разницы доходы минус расходы.</p>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">🏦</span>
+      <h3>ФСЗН в 2026 году <span class="upd">обновлено</span></h3>
+      <p style="margin-bottom: 12px;">С 2025 года система ФСЗН изменилась. Теперь взносы рассчитываются по дифференцированной системе:</p>
+      <div class="price-list">
+        <div class="price-row">
+          <span class="price-name">Ставка взносов (неизменна)</span>
+          <span class="price-val">35% от базы</span>
+        </div>
+        <div class="price-row">
+          <span class="price-name">Если годовой доход менее 10 296 BYN (12 МЗП)</span>
+          <span class="price-val">35% от факт. дохода</span>
+        </div>
+        <div class="price-row">
+          <span class="price-name">Если доход больше 10 296 BYN (12 МЗП)</span>
+          <span class="price-val">мин. 3 603.60 BYN/год</span>
+        </div>
+        <div class="price-row">
+          <span class="price-name">Срок уплаты (за 2026 год)</span>
+          <span class="price-val">до 31 марта 2027</span>
+        </div>
+        <div class="price-row">
+          <span class="price-name">Форма ПУ-3 — подавать больше не нужно!</span>
+          <span class="price-val">✅ Автоматически</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">🎉</span>
+      <p><strong>Хорошая новость:</strong> С 2025 года больше не нужно подавать форму ПУ-3 персонифицированного учёта. ФСЗН сам получает данные от МНС и направляет тебе готовый платёжный документ — просто оплати до 31 марта.</p>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">📅</span>
+      <h3>Что и когда платить — итоговая таблица</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Платёж</th><th>Срок</th><th>Где платить</th></tr>
+          <tr><td><strong>Подоходный налог (ОСН) 20%</strong></td><td>Ежеквартально, до 22-го числа</td><td>nalog.gov.by / ЕРИП</td></tr>
+          <tr><td><strong>ФСЗН (за 2026 год)</strong></td><td>До 31 марта 2027</td><td>ЕРИП / банк / личный кабинет ФСЗН</td></tr>
+          <tr><td><strong>Декларация подоходного</strong></td><td>Ежеквартально</td><td>nalog.gov.by (электронно)</td></tr>
+          <tr><td><strong>Единый налог (если применяешь)</strong></td><td>До 1-го числа отчётного квартала</td><td>nalog.gov.by / ЕРИП</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="warn">
+      <span class="tip-icon">⚠️</span>
+      <p><strong>Осторожно с расчётом налогов и маркетплейсами:</strong> Твоя налогооблагаемая база — это выручка до вычета комиссии маркетплейса. Если WB перечислил тебе 800 BYN, а комиссия была 200 BYN, — твой доход всё равно 1000 BYN. Включи это в расчёты. Обязательно уточни у налогового консультанта при старте.</p>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <p><strong>Бесплатная помощь:</strong> В Беларуси работают Центры поддержки предпринимательства (ЦПП) — они есть в каждом областном городе. Бесплатно помогут с первой декларацией, выбором системы налогообложения и регистрацией. Это реально полезно на старте.</p>
+    </div>
+  </section>
+
+
+  <div class="divider"></div>
+
+  <!-- CALCULATOR SECTION -->
+  <section class="section" id="calc">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Калькулятор прибыли 🧮</h2>
+    </div>
+
+    <div class="calc-section">
+      <div class="calc-title">Посчитай прибыль с одной продажи</div>
+      <p class="calc-sub">Введи параметры — получи точную цифру: за сколько продавать и сколько останется в кармане после всех расходов и налогов.</p>
+
+      <div class="calc-block">
+        <div class="calc-block-title"><span>🧵</span> Пластик и катушка</div>
+        <div class="field-row three">
+          <div class="field">
+            <label>Цена катушки, BYN</label>
+            <input type="number" id="spoolPrice" value="70" min="1" step="1">
+            <span class="hint">Цена на кассе / в магазине</span>
+          </div>
+          <div class="field">
+            <label>Длина катушки, м</label>
+            <input type="number" id="spoolLength" value="330" min="1" step="10">
+            <span class="hint">Обычно 330 м = 1 кг PLA</span>
+          </div>
+          <div class="field">
+            <label>Расход на изделие, м</label>
+            <input type="number" id="printLength" value="15" min="0.1" step="0.5">
+            <span class="hint">Берётся из Bambu Studio</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-block">
+        <div class="calc-block-title"><span>⚡</span> Электричество и амортизация</div>
+        <div class="field-row">
+          <div class="field">
+            <label>Время печати, ч</label>
+            <input type="number" id="printTime" value="3" min="0.1" step="0.5">
+            <span class="hint">Из Bambu Studio</span>
+          </div>
+          <div class="field">
+            <label>Тариф электро, BYN/кВт·ч</label>
+            <input type="number" id="elecRate" value="0.25" min="0.01" step="0.01">
+            <span class="hint">~0.25 BYN в РБ 2026</span>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Мощность принтера, Вт</label>
+            <input type="number" id="printerWatt" value="120" min="10" step="10">
+            <span class="hint">A1 ≈ 100–150 Вт в работе</span>
+          </div>
+          <div class="field">
+            <label>Амортизация, BYN/изд.</label>
+            <input type="number" id="amort" value="0.5" min="0" step="0.1">
+            <span class="hint">Цена принтера ÷ кол-во изделий</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-block">
+        <div class="calc-block-title"><span>📦</span> Упаковка и прочее</div>
+        <div class="field-row">
+          <div class="field">
+            <label>Упаковка, BYN/шт.</label>
+            <input type="number" id="packaging" value="1.5" min="0" step="0.1">
+            <span class="hint">Плёнка + пакет + вкладыш</span>
+          </div>
+          <div class="field">
+            <label>Прочие расходы, BYN/шт.</label>
+            <input type="number" id="other" value="0.3" min="0" step="0.1">
+            <span class="hint">Брак, сопла, обслуживание</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-block">
+        <div class="calc-block-title"><span>🛒</span> Маркетплейс и налоги</div>
+        <div class="field-row">
+          <div class="field">
+            <label>Маркетплейс</label>
+            <select id="marketplace" onchange="updateCommission()">
+              <option value="22">Wildberries (~22%)</option>
+              <option value="15">Ozon FBS (~15%)</option>
+              <option value="20">Ozon FBO (~20%)</option>
+              <option value="custom">Своя комиссия</option>
+            </select>
+          </div>
+          <div class="field" id="customCommField" style="display:none">
+            <label>Своя комиссия, %</label>
+            <input type="number" id="customComm" value="20" min="0" max="60" step="0.5">
+          </div>
+          <div class="field">
+            <label>Ставка налога</label>
+            <select id="taxRate">
+              <option value="0">Не учитывать</option>
+              <option value="20" selected>ОСН — 20% от прибыли</option>
+              <option value="5">ЕН — ~5% (если применимо)</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Целевая маржа, %</label>
+            <input type="number" id="targetMargin" value="30" min="1" max="90" step="1">
+            <span class="hint">Рекомендую минимум 25–30%</span>
+          </div>
+          <div class="field">
+            <label>Своя цена продажи, BYN</label>
+            <input type="number" id="customPrice" value="" min="0" step="0.5" placeholder="Оставь пустым = авто">
+            <span class="hint">Или рассчитается автоматически</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="calc-btn" onclick="calculate()">⚡ Рассчитать прибыль</button>
+
+      <div class="calc-result" id="calcResult">
+        <div class="calc-result-title">📊 Результаты расчёта</div>
+        <div class="result-cards">
+          <div class="rcard big">
+            <div class="rl">Рекомендуемая цена продажи</div>
+            <span class="rv" id="r-price">—</span>
+            <div class="rs">минимальная с учётом целевой маржи</div>
+          </div>
+          <div class="rcard">
+            <div class="rl">Чистая прибыль</div>
+            <span class="rv" id="r-profit" style="color:var(--accent3)">—</span>
+            <div class="rs">с одного изделия</div>
+          </div>
+          <div class="rcard">
+            <div class="rl">Реальная маржа</div>
+            <span class="rv" id="r-margin" style="color:#a78bfa">—</span>
+            <div class="rs">от цены продажи</div>
+          </div>
+        </div>
+
+        <div class="breakdown">
+          <div class="brow"><span class="bn">🧵 Себестоимость пластика</span><span class="bv red" id="r-plastic">—</span></div>
+          <div class="brow"><span class="bn">⚡ Электричество</span><span class="bv red" id="r-elec">—</span></div>
+          <div class="brow"><span class="bn">🔧 Амортизация принтера</span><span class="bv red" id="r-amort">—</span></div>
+          <div class="brow"><span class="bn">📦 Упаковка</span><span class="bv red" id="r-pack">—</span></div>
+          <div class="brow"><span class="bn">📎 Прочие расходы</span><span class="bv red" id="r-other">—</span></div>
+          <div class="brow" style="border-top:1px solid var(--border);margin-top:4px;padding-top:12px;"><span class="bn" style="font-weight:700;color:var(--text)">📌 Полная себестоимость</span><span class="bv red" id="r-total-cost" style="font-size:14px">—</span></div>
+          <div class="brow"><span class="bn">🛒 Комиссия маркетплейса</span><span class="bv red" id="r-commission">—</span></div>
+          <div class="brow"><span class="bn">🏛️ Налог</span><span class="bv red" id="r-tax">—</span></div>
+          <div class="brow" style="background:rgba(6,214,160,0.06);border:1px solid rgba(6,214,160,0.12);"><span class="bn" style="font-weight:700;color:var(--text)">💚 Чистая прибыль</span><span class="bv green" id="r-net" style="font-size:14px">—</span></div>
+        </div>
+
+        <div class="margin-section">
+          <div class="margin-labels"><span>Рентабельность</span><span id="r-margin-pct">—</span></div>
+          <div class="mbar"><div class="mfill" id="r-mbar" style="width:0%"></div></div>
+        </div>
+        <div class="verdict" id="r-verdict"></div>
+        <div class="min-price-note" id="r-minnote"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CHECKLIST -->
+  <section class="checklist-section" id="checklist">
+    <div class="checklist-title">✅ Чек-лист<br>«От 0 до старта»</div>
+    <p class="checklist-sub">Отмечай пункты по мере выполнения — прогресс сохраняется в браузере.</p>
+
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <p class="progress-text" id="progressText">0 из 31 выполнено</p>
+
+    <div class="check-group">
+      <div class="check-group-title">🖨️ Принтер и оборудование</div>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Купить Bambu Lab A1 (без комбо)</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Выбрать место: ровный стол вдали от сквозняков</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Собрать принтер по инструкции</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Пройти Full Calibration при первом включении</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Установить Bambu Studio на ПК/ноутбук</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Скачать приложение Bambu Handy на телефон</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Напечатать тест Benchy — оценить качество</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Купить 2–3 катушки PLA разных цветов</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Купить катушку PETG для функциональных изделий</span></label>
+    </div>
+
+    <div class="check-group">
+      <div class="check-group-title">📚 Обучение</div>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Зарегистрироваться на Makerworld.com</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Скачать и напечатать 5–10 разных моделей</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Разобраться с infill, supports, brim в слайсере</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Попробовать TinkerCAD — нарисовать простую модель</span></label>
+    </div>
+
+    <div class="check-group">
+      <div class="check-group-title">🏛️ Юридическое и финансы</div>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Определить коды ОКЭД (32.99 + 47.91)</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Зарегистрировать ИП через egr.gov.by</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Получить свидетельство + УНП</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Проверить перечень ЕН — подходит ли мой вид деятельности</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Выбрать систему налогообложения (скорее всего ОСН)</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Открыть расчётный счёт в банке</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Зарегистрироваться на nalog.gov.by</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Скачать мобильное приложение ФСЗН</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Проконсультироваться в ЦПП (бесплатно)</span></label>
+    </div>
+
+    <div class="check-group">
+      <div class="check-group-title">🛒 Wildberries</div>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Зарегистрироваться на partners.wb.ru</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Загрузить документы ИП, пройти проверку</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Создать первые 3 карточки товаров</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Сфотографировать товары на белом фоне</span></label>
+    </div>
+
+    <div class="check-group">
+      <div class="check-group-title">🟡 Ozon</div>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Зарегистрироваться на seller.ozon.ru</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Пройти верификацию (1–3 рабочих дня)</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Настроить FBS (отправка со своего склада)</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Разместить первые товары</span></label>
+    </div>
+
+    <div class="check-group">
+      <div class="check-group-title">🚀 Запуск</div>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Напечатать первую партию товара (10–20 штук)</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Закупить упаковку (плёнка, пакеты, вкладыши)</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">🎉 Получить первый заказ!</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Получить первый отзыв — ответить на него</span></label>
+      <label class="check-item" onclick="toggle(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">💪 Заплатить первый налог — ты предприниматель!</span></label>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>Гайд актуален на <strong>февраль 2026</strong> | Законодательство может меняться — проверяй на <a href="https://nalog.gov.by" target="_blank">nalog.gov.by</a> и <a href="https://ssf.gov.by" target="_blank">ssf.gov.by</a></p>
+  <p style="margin-top:8px; opacity:0.45;">Bambu Lab A1 • Wildberries • Ozon • Беларусь 🇧🇾</p>
+</footer>
+
+<script>
+  // CHECKLIST
+  const KEY = '3d_guide_2026';
+
+  function toggle(label) {
+    label.classList.toggle('done');
+    save();
+    updateProgress();
+  }
+
+  function save() {
+    const items = document.querySelectorAll('.check-item');
+    localStorage.setItem(KEY, JSON.stringify([...items].map(i => i.classList.contains('done'))));
+  }
+
+  function load() {
+    try {
+      const s = JSON.parse(localStorage.getItem(KEY) || '[]');
+      document.querySelectorAll('.check-item').forEach((item, i) => {
+        if (s[i]) item.classList.add('done');
+      });
+    } catch(e) {}
+  }
+
+  function updateProgress() {
+    const items = document.querySelectorAll('.check-item');
+    const done = document.querySelectorAll('.check-item.done').length;
+    const total = items.length;
+    const pct = Math.round(done / total * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = `${done} из ${total} выполнено (${pct}%)`;
+  }
+
+  load();
+  updateProgress();
+
+  // DOT NAV
+  const sections = document.querySelectorAll('section');
+  const dots = document.querySelectorAll('.dot');
+
+  function scrollToSection(i) {
+    sections[i]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const idx = [...sections].indexOf(e.target);
+        dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+      }
+    });
+  }, { threshold: 0.3 }).observe && sections.forEach(s => {
+    new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const idx = [...sections].indexOf(e.target);
+          dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+        }
+      });
+    }, { threshold: 0.3 }).observe(s);
+  });
+
+  // ===== CALCULATOR =====
+  function updateCommission() {
+    var sel = document.getElementById('marketplace');
+    var cf = document.getElementById('customCommField');
+    cf.style.display = sel.value === 'custom' ? 'flex' : 'none';
+  }
+
+  function byn(val) {
+    return (val >= 0 ? '' : '-') + Math.abs(val).toFixed(2) + ' BYN';
+  }
+
+  function calculate() {
+    var spoolPrice  = parseFloat(document.getElementById('spoolPrice').value)  || 0;
+    var spoolLength = parseFloat(document.getElementById('spoolLength').value) || 330;
+    var printLength = parseFloat(document.getElementById('printLength').value) || 0;
+    var printTime   = parseFloat(document.getElementById('printTime').value)   || 0;
+    var elecRate    = parseFloat(document.getElementById('elecRate').value)    || 0.25;
+    var printerWatt = parseFloat(document.getElementById('printerWatt').value) || 120;
+    var amort       = parseFloat(document.getElementById('amort').value)       || 0;
+    var packaging   = parseFloat(document.getElementById('packaging').value)   || 0;
+    var other       = parseFloat(document.getElementById('other').value)       || 0;
+    var taxRatePct  = parseFloat(document.getElementById('taxRate').value)     || 0;
+    var targetMargin= parseFloat(document.getElementById('targetMargin').value)|| 30;
+
+    var mktSel = document.getElementById('marketplace').value;
+    var commPct = mktSel === 'custom'
+      ? (parseFloat(document.getElementById('customComm').value) || 0)
+      : parseFloat(mktSel);
+
+    var cpRaw = document.getElementById('customPrice').value.trim();
+    var customPrice = cpRaw !== '' ? parseFloat(cpRaw) : null;
+
+    var plasticCost = spoolLength > 0 ? (spoolPrice / spoolLength) * printLength : 0;
+    var elecCost = (printerWatt / 1000) * printTime * elecRate;
+    var totalCost = plasticCost + elecCost + amort + packaging + other;
+
+    var c = commPct / 100;
+    var t = taxRatePct / 100;
+    var m = targetMargin / 100;
+
+    // Formula: sellPrice = totalCost*(1-t) / [(1-c)(1-t) - m]
+    var denom = (1 - c) * (1 - t) - m;
+    var recPrice = denom > 0 ? (totalCost * (1 - t)) / denom : totalCost * 10;
+    recPrice = Math.ceil(recPrice * 10) / 10;
+
+    var sellPrice = customPrice !== null ? customPrice : recPrice;
+
+    var commissionAmt = sellPrice * c;
+    var grossProfit = sellPrice - commissionAmt - totalCost;
+    var taxAmt = t > 0 ? Math.max(0, grossProfit) * t : 0;
+    var netProfit = grossProfit - taxAmt;
+    var realMarginPct = sellPrice > 0 ? (netProfit / sellPrice) * 100 : 0;
+
+    document.getElementById('r-plastic').textContent    = byn(plasticCost);
+    document.getElementById('r-elec').textContent       = byn(elecCost);
+    document.getElementById('r-amort').textContent      = byn(amort);
+    document.getElementById('r-pack').textContent       = byn(packaging);
+    document.getElementById('r-other').textContent      = byn(other);
+    document.getElementById('r-total-cost').textContent = byn(totalCost);
+    document.getElementById('r-commission').textContent = byn(commissionAmt) + ' (' + commPct.toFixed(0) + '%)';
+    document.getElementById('r-tax').textContent        = taxRatePct > 0 ? byn(taxAmt) : '0.00 BYN (не учитывается)';
+    document.getElementById('r-net').textContent        = byn(netProfit);
+    document.getElementById('r-price').textContent      = byn(sellPrice);
+    document.getElementById('r-profit').textContent     = byn(netProfit);
+    document.getElementById('r-margin').textContent     = realMarginPct.toFixed(1) + '%';
+    document.getElementById('r-margin-pct').textContent = realMarginPct.toFixed(1) + '%';
+
+    var pct = Math.max(0, Math.min(100, realMarginPct));
+    var fill = document.getElementById('r-mbar');
+    fill.style.width = pct + '%';
+    if (pct >= 25) fill.style.background = 'linear-gradient(90deg, #fbbf24, #34d399)';
+    else if (pct >= 10) fill.style.background = 'linear-gradient(90deg, #f87171, #fbbf24)';
+    else fill.style.background = '#f87171';
+
+    var verdict = document.getElementById('r-verdict');
+    if (netProfit < 0) {
+      verdict.className = 'verdict bad';
+      verdict.textContent = 'Убыток! Ты теряешь ' + Math.abs(netProfit).toFixed(2) + ' BYN на каждой продаже. Повысь цену или снизь расходы.';
+    } else if (realMarginPct < 10) {
+      verdict.className = 'verdict bad';
+      verdict.textContent = 'Маржа очень низкая (' + realMarginPct.toFixed(1) + '%). При первой проблеме уйдёшь в минус.';
+    } else if (realMarginPct < 20) {
+      verdict.className = 'verdict ok';
+      verdict.textContent = 'Маржа приемлемая (' + realMarginPct.toFixed(1) + '%), но стремись к 25–30% для устойчивого бизнеса.';
+    } else if (realMarginPct < 35) {
+      verdict.className = 'verdict good';
+      verdict.textContent = 'Хорошая маржа ' + realMarginPct.toFixed(1) + '%! Можно работать. Следи за себестоимостью.';
+    } else {
+      verdict.className = 'verdict good';
+      verdict.textContent = 'Отличная маржа ' + realMarginPct.toFixed(1) + '%! Масштабируй этот продукт!';
+    }
+
+    document.getElementById('r-minnote').textContent = customPrice !== null
+      ? 'Ты указал цену ' + byn(sellPrice) + '. Авторасчёт с маржой ' + targetMargin + '% даёт ' + byn(recPrice) + '.'
+      : 'Цена рассчитана автоматически с целевой маржой ' + targetMargin + '%. Укажи свою цену выше — пересчитаю.';
+
+    var result = document.getElementById('calcResult');
+    result.classList.add('visible');
+    setTimeout(function(){ result.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 50);
+  }
+
+</script>
+</body>
+</html>
