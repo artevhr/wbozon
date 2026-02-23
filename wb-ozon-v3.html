@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WB & OZON Академия — Полный курс Беларусь 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07080f;--surface:#0e0f1a;--card:#141526;--card2:#1c1e35;
+  --border:#252640;--accent:#7c5cfc;--accent2:#fc5c7d;--teal:#00d4b4;
+  --gold:#ffd166;--text:#dde2f0;--muted:#6870a0;--wb:#cb11ab;--ozon:#005bff;
+  --success:#22c55e;--warning:#f59e0b;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+.app{display:flex;min-height:100vh}
+.sidebar{width:280px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);height:100vh;position:sticky;top:0;display:flex;flex-direction:column;overflow-y:auto}
+.sidebar-brand{padding:1.5rem;border-bottom:1px solid var(--border);flex-shrink:0}
+.brand-logo{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;letter-spacing:-.5px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.brand-sub{font-size:.7rem;color:var(--muted);margin-top:.2rem;letter-spacing:1px;text-transform:uppercase}
+.xp-block{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border)}
+.xp-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem}
+.xp-label{font-size:.75rem;color:var(--muted)}
+.xp-val{font-size:.85rem;font-weight:700;color:var(--gold)}
+.xp-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+.xp-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;transition:width .5s}
+.level-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold)}
+.level-badge::before{content:'⭐'}
+.modules-nav{flex:1;padding:1rem 0;overflow-y:auto}
+.nav-section-label{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:.75rem 1.5rem .4rem}
+.nav-module{display:flex;align-items:center;gap:.75rem;padding:.7rem 1.5rem;cursor:pointer;transition:all .2s;border-left:3px solid transparent}
+.nav-module:hover{background:var(--card)}
+.nav-module.active{background:var(--card);border-left-color:var(--accent)}
+.module-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;background:var(--card2)}
+.nav-module.active .module-icon{background:rgba(124,92,252,.2)}
+.module-nav-title{font-size:.82rem;font-weight:600;line-height:1.3}
+.module-nav-sub{font-size:.7rem;color:var(--muted);margin-top:.1rem}
+.module-check{margin-left:auto;width:18px;height:18px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.6rem}
+.module-check.done{background:var(--success);border-color:var(--success);color:white}
+.module-check.done::after{content:'✓'}
+.sidebar-footer{padding:1rem 1.5rem;border-top:1px solid var(--border);font-size:.75rem;color:var(--muted)}
+.main{flex:1;overflow-y:auto;min-height:100vh}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(7,8,15,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between}
+.module-breadcrumb{font-size:.8rem;color:var(--muted)}
+.module-breadcrumb span{color:var(--text);font-weight:600}
+.streak{display:flex;align-items:center;gap:.5rem;font-size:.8rem;font-weight:600;color:var(--gold)}
+.course-hero{padding:4rem 2.5rem 3rem;background:linear-gradient(135deg,rgba(124,92,252,.08) 0%,rgba(252,92,125,.05) 100%);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.course-hero::before{content:'';position:absolute;top:-50%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(124,92,252,.15) 0%,transparent 70%);pointer-events:none}
+.course-tag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(124,92,252,.15);border:1px solid rgba(124,92,252,.3);color:#a58eff;padding:.35rem 1rem;border-radius:100px;font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:1.5rem}
+.course-hero h1{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:800;line-height:1.1;margin-bottom:1rem;letter-spacing:-1px}
+.hero-grad{background:linear-gradient(135deg,#a58eff,#fc5c7d);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.course-hero p{font-size:1rem;color:var(--muted);max-width:560px;margin-bottom:2rem}
+.course-meta{display:flex;gap:2rem;flex-wrap:wrap}
+.meta-item{display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--muted)}
+.meta-item strong{color:var(--text)}
+.progress-overview{margin-top:2.5rem;padding:1.5rem;background:var(--card);border:1px solid var(--border);border-radius:12px;display:flex;align-items:center;gap:2rem;flex-wrap:wrap;max-width:600px}
+.ov-stat{text-align:center}
+.ov-num{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800}
+.ov-label{font-size:.72rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:.1rem}
+.ov-progress{flex:1;min-width:150px}
+.ov-prog-label{font-size:.75rem;color:var(--muted);margin-bottom:.4rem;display:flex;justify-content:space-between}
+.ov-prog-bar{height:8px;background:var(--border);border-radius:4px;overflow:hidden}
+.ov-prog-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:4px;transition:width .5s}
+.module-view{padding:2.5rem;max-width:860px;display:none}
+.module-view.active{display:block;animation:slideIn .3s ease}
+@keyframes slideIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.module-header{margin-bottom:2.5rem}
+.module-num{font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+h2{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;letter-spacing:-.5px;line-height:1.1;margin-bottom:.75rem}
+.module-desc{font-size:.95rem;color:var(--muted)}
+.lessons{display:flex;flex-direction:column;gap:1rem}
+.lesson-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all .2s}
+.lesson-card:hover{border-color:var(--accent)}
+.lesson-header{display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;cursor:pointer}
+.lesson-ico{width:40px;height:40px;border-radius:10px;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.lesson-title{font-weight:600;font-size:.95rem}
+.lesson-meta{font-size:.75rem;color:var(--muted);margin-top:.2rem}
+.lesson-toggle{margin-left:auto;color:var(--muted);font-size:.8rem;transition:transform .2s}
+.lesson-card.open .lesson-toggle{transform:rotate(180deg)}
+.lesson-body{display:none;padding:0 1.5rem 1.5rem;border-top:1px solid var(--border);padding-top:1.25rem}
+.lesson-card.open .lesson-body{display:block}
+.lesson-body p{font-size:.9rem;color:var(--muted);margin-bottom:1rem}
+.lesson-body ul{padding-left:1.25rem;margin-bottom:1rem}
+.lesson-body li{font-size:.9rem;color:var(--muted);margin-bottom:.4rem}
+.lesson-body strong{color:var(--text)}
+.callout{padding:1rem 1.25rem;border-radius:10px;margin:1rem 0;font-size:.88rem}
+.callout.info{background:rgba(124,92,252,.1);border-left:3px solid var(--accent);color:#a58eff}
+.callout.warning{background:rgba(245,158,11,.1);border-left:3px solid var(--warning);color:var(--warning)}
+.callout.success{background:rgba(34,197,94,.1);border-left:3px solid var(--success);color:var(--success)}
+.callout.new2026{background:rgba(0,212,180,.08);border-left:3px solid var(--teal);color:var(--teal)}
+.mark-done-btn{margin-top:1rem;padding:.6rem 1.5rem;background:rgba(124,92,252,.15);border:1px solid var(--accent);color:var(--accent);border-radius:8px;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.5px;transition:all .2s}
+.mark-done-btn:hover{background:var(--accent);color:white}
+.lesson-card.completed .lesson-header{opacity:.7}
+.quiz-block{background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:1.75rem;margin-top:2rem}
+.quiz-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;margin-bottom:.4rem}
+.quiz-sub{font-size:.82rem;color:var(--muted);margin-bottom:1.5rem}
+.quiz-q{font-size:.95rem;font-weight:600;margin-bottom:1rem}
+.quiz-opts{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.25rem}
+.quiz-opt{display:flex;align-items:center;gap:.75rem;padding:.85rem 1.1rem;background:var(--card);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:all .2s;font-size:.9rem}
+.quiz-opt:hover{border-color:var(--accent)}
+.quiz-opt.correct{border-color:var(--success);background:rgba(34,197,94,.08);color:var(--success)}
+.quiz-opt.wrong{border-color:#ef4444;background:rgba(239,68,68,.08);color:#ef4444}
+.quiz-result{font-size:.9rem;padding:.75rem;border-radius:8px;display:none}
+.quiz-result.show{display:block}
+.quiz-result.correct{background:rgba(34,197,94,.1);color:var(--success)}
+.quiz-result.wrong{background:rgba(239,68,68,.1);color:#ef4444}
+.calc-module{background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:2rem}
+.calc-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem}
+@media(max-width:560px){.calc-row{grid-template-columns:1fr}}
+.cf label{display:block;font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.cf input,.cf select{width:100%;padding:.75rem 1rem;background:var(--card);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:.95rem;outline:none;transition:border-color .2s}
+.cf input:focus,.cf select:focus{border-color:var(--accent)}
+.cf select option{background:var(--card)}
+.calc-go{padding:.85rem 2rem;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:10px;color:white;font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;transition:opacity .2s;width:100%;margin-bottom:1.5rem}
+.calc-go:hover{opacity:.9}
+.results-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1rem}
+.res-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center}
+.res-num{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800}
+.res-num.g{color:var(--teal)}
+.res-num.r{color:#ef4444}
+.res-num.y{color:var(--gold)}
+.res-label{font-size:.7rem;color:var(--muted);margin-top:.25rem}
+.achievements{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:2rem}
+.ach{display:flex;align-items:center;gap:.5rem;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.5rem .85rem;font-size:.78rem;opacity:.4;transition:all .3s}
+.ach.unlocked{opacity:1;border-color:var(--gold);background:rgba(255,209,102,.05)}
+.ach-icon{font-size:1rem}
+.module-nav-btns{display:flex;justify-content:space-between;align-items:center;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}
+.nav-btn{padding:.75rem 1.5rem;border-radius:10px;font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem;border:none}
+.nav-btn.prev{background:var(--card);border:1px solid var(--border);color:var(--muted)}
+.nav-btn.prev:hover{border-color:var(--text);color:var(--text)}
+.nav-btn.next{background:linear-gradient(135deg,var(--accent),var(--accent2));color:white}
+.nav-btn.next:hover{opacity:.9;transform:translateX(2px)}
+.cl-list{display:flex;flex-direction:column;gap:.6rem}
+.cl-item{display:flex;align-items:flex-start;gap:.9rem;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem;cursor:pointer;transition:all .2s}
+.cl-item:hover{border-color:var(--muted)}
+.cl-item.done{border-color:var(--teal);background:rgba(0,212,180,.04)}
+.cl-box{width:20px;height:20px;border-radius:6px;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s;margin-top:1px;font-size:.65rem;font-weight:800}
+.cl-item.done .cl-box{background:var(--teal);border-color:var(--teal);color:var(--bg)}
+.cl-text{font-size:.88rem;font-weight:500}
+.cl-sub{font-size:.76rem;color:var(--muted);margin-top:.2rem}
+.cl-item.done .cl-text{text-decoration:line-through;color:var(--muted)}
+.fszn-mini-table{width:100%;border-collapse:collapse;margin-top:.75rem;font-size:.82rem}
+.fszn-mini-table th,.fszn-mini-table td{padding:.5rem .75rem;border:1px solid var(--border);text-align:left}
+.fszn-mini-table th{background:var(--card);color:var(--muted);font-weight:700;font-size:.7rem;text-transform:uppercase;letter-spacing:.5px}
+.fszn-mini-table td{color:var(--muted)}
+.diploma{text-align:center;padding:4rem 2rem;background:radial-gradient(ellipse at center,rgba(124,92,252,.15) 0%,transparent 70%);border:1px solid var(--border);border-radius:20px;margin-top:2rem}
+.diploma-icon{font-size:4rem;margin-bottom:1rem}
+.diploma h2{font-family:'Syne',sans-serif;font-size:2rem;margin-bottom:.5rem}
+.diploma p{color:var(--muted);margin-bottom:2rem}
+@media(max-width:768px){
+  .sidebar{position:fixed;left:-280px;z-index:200;transition:left .3s;top:0}
+  .sidebar.open{left:0}
+  .menu-toggle{display:flex!important}
+}
+.menu-toggle{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:4px}
+.menu-toggle span{width:22px;height:2px;background:var(--text);border-radius:1px}
+</style>
+</head>
+<body>
+<div class="app">
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-logo">🎓 WB & OZON Академия</div>
+    <div class="brand-sub">Беларусь · 2026 · Версия 3</div>
+  </div>
+  <div class="xp-block">
+    <div class="xp-row">
+      <span class="level-badge" id="level-label">Новичок</span>
+      <span class="xp-val" id="xp-num">0 XP</span>
+    </div>
+    <div class="xp-bar"><div class="xp-fill" id="xp-fill" style="width:0%"></div></div>
+  </div>
+  <div class="modules-nav" id="modules-nav"></div>
+  <div class="sidebar-footer">nalog.gov.by · ssf.gov.by · egry.by</div>
+</aside>
+
+<div class="main">
+  <div class="topbar">
+    <div style="display:flex;align-items:center;gap:1rem">
+      <div class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></div>
+      <div class="module-breadcrumb">Академия / <span id="current-module-name">Введение</span></div>
+    </div>
+    <div class="streak">🔥 <span id="streak">1</span> день стрик</div>
+  </div>
+
+  <!-- MODULE 0: HOME -->
+  <div class="module-view active" id="view-0">
+    <div class="course-hero">
+      <div class="course-tag">🎓 Интерактивный курс · 7 модулей · 2026</div>
+      <h1>Торговля на WB и OZON<br><span class="hero-grad">из Беларуси</span></h1>
+      <p>Полный практический курс с актуальными данными 2026 года: от регистрации ИП до стабильных продаж. Новые лимиты УСН, правила ФСЗН, нюансы маркетплейсов.</p>
+      <div class="course-meta">
+        <div class="meta-item">📚 <strong>7 модулей</strong> · 21 урок</div>
+        <div class="meta-item">⏱️ <strong>~5 часов</strong> обучения</div>
+        <div class="meta-item">🧩 <strong>Квизы</strong> для закрепления</div>
+        <div class="meta-item">🧮 <strong>Калькулятор</strong> прибыли 2026</div>
+      </div>
+      <div class="progress-overview">
+        <div class="ov-stat"><div class="ov-num" id="ov-done">0</div><div class="ov-label">Уроков пройдено</div></div>
+        <div class="ov-stat"><div class="ov-num" style="color:var(--gold)" id="ov-xp">0</div><div class="ov-label">XP заработано</div></div>
+        <div class="ov-progress">
+          <div class="ov-prog-label"><span>Прогресс курса</span><span id="ov-pct">0%</span></div>
+          <div class="ov-prog-bar"><div class="ov-prog-fill" id="ov-fill" style="width:0%"></div></div>
+        </div>
+      </div>
+    </div>
+    <div style="padding:2.5rem;max-width:860px">
+      <h2 style="margin-bottom:1.5rem">Программа курса</h2>
+      <div id="course-outline"></div>
+      <div style="margin-top:2.5rem">
+        <h2 style="margin-bottom:1.5rem">🏆 Достижения</h2>
+        <div class="achievements" id="achievements-block"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 1 -->
+  <div class="module-view" id="view-1">
+    <div class="module-header">
+      <div class="module-num">Модуль 01</div>
+      <h2>Регистрация<br>и документы</h2>
+      <p class="module-desc">Всё для легального старта в Беларуси в 2026 году. ИП, счёт, ЭЦП, «бесшовный» переход.</p>
+    </div>
+    <div class="lessons" id="lessons-1"></div>
+    <div class="module-nav-btns">
+      <button class="nav-btn prev" onclick="goModule(0)">← Введение</button>
+      <button class="nav-btn next" onclick="goModule(2)">Модуль 2 →</button>
+    </div>
+  </div>
+
+  <!-- MODULE 2 -->
+  <div class="module-view" id="view-2">
+    <div class="module-header">
+      <div class="module-num">Модуль 02</div>
+      <h2>Налоги 2026</h2>
+      <p class="module-desc">Новая редакция НК РБ с 1 января 2026: лимиты УСН, дифференцированный ФСЗН, нюансы для маркетплейсов.</p>
+    </div>
+    <div class="lessons" id="lessons-2"></div>
+    <div class="module-nav-btns">
+      <button class="nav-btn prev" onclick="goModule(1)">← Модуль 1</button>
+      <button class="nav-btn next" onclick="goModule(3)">Модуль 3 →</button>
+    </div>
+  </div>
+
+  <!-- MODULE 3 -->
+  <div class="module-view" id="view-3">
+    <div class="module-header">
+      <div class="module-num">Модуль 03</div>
+      <h2>Выбор ниши<br>и товара</h2>
+      <p class="module-desc">Анализируем рынок, считаем юнит-экономику, находим прибыльные ниши с учётом налогов 2026.</p>
+    </div>
+    <div class="lessons" id="lessons-3"></div>
+    <div class="module-nav-btns">
+      <button class="nav-btn prev" onclick="goModule(2)">← Модуль 2</button>
+      <button class="nav-btn next" onclick="goModule(4)">Модуль 4 →</button>
+    </div>
+  </div>
+
+  <!-- MODULE 4 -->
+  <div class="module-view" id="view-4">
+    <div class="module-header">
+      <div class="module-num">Модуль 04</div>
+      <h2>Карточка товара<br>и контент</h2>
+      <p class="module-desc">Создаём продающие карточки: фото, инфографика, SEO. Разбираем алгоритмы ранжирования WB и OZON.</p>
+    </div>
+    <div class="lessons" id="lessons-4"></div>
+    <div class="module-nav-btns">
+      <button class="nav-btn prev" onclick="goModule(3)">← Модуль 3</button>
+      <button class="nav-btn next" onclick="goModule(5)">Модуль 5 →</button>
+    </div>
+  </div>
+
+  <!-- MODULE 5: CALCULATOR -->
+  <div class="module-view" id="view-5">
+    <div class="module-header">
+      <div class="module-num">Модуль 05</div>
+      <h2>Калькулятор<br>прибыли 2026</h2>
+      <p class="module-desc">Интерактивный инструмент с актуальными данными 2026: УСН, новый ФСЗН, комиссии маркетплейсов.</p>
+    </div>
+    <div class="calc-module">
+      <div class="calc-row">
+        <div class="cf"><label>Цена продажи (BYN)</label><input type="number" id="cp3" value="55"></div>
+        <div class="cf"><label>Себестоимость (BYN)</label><input type="number" id="cc3" value="18"></div>
+        <div class="cf"><label>Продаж в месяц</label><input type="number" id="cq3" value="100"></div>
+        <div class="cf"><label>Платформа</label>
+          <select id="cpf3">
+            <option value="15">Wildberries (~15%)</option>
+            <option value="12">OZON (~12%)</option>
+            <option value="20">WB одежда (~20%)</option>
+          </select>
+        </div>
+        <div class="cf"><label>Логистика/шт (BYN)</label><input type="number" id="cl3" value="1.5" step="0.1"></div>
+        <div class="cf"><label>Реклама/мес (BYN)</label><input type="number" id="cad3" value="80"></div>
+        <div class="cf"><label>Налог</label>
+          <select id="ctax3">
+            <option value="6r">УСН 6% от выручки</option>
+            <option value="16p">УСН 16% от прибыли</option>
+          </select>
+        </div>
+        <div class="cf"><label>Хранение/мес (BYN)</label><input type="number" id="cst3" value="50"></div>
+      </div>
+      <button class="calc-go" onclick="doCalc3()">⚡ Рассчитать прибыль 2026</button>
+      <div class="results-grid">
+        <div class="res-card"><div class="res-num g" id="v3-rev">—</div><div class="res-label">Выручка</div></div>
+        <div class="res-card"><div class="res-num y" id="v3-exp">—</div><div class="res-label">Расходы</div></div>
+        <div class="res-card"><div class="res-num" id="v3-profit">—</div><div class="res-label">Чистая прибыль</div></div>
+        <div class="res-card"><div class="res-num" id="v3-margin">—</div><div class="res-label">Маржа</div></div>
+        <div class="res-card"><div class="res-num" id="v3-roi">—</div><div class="res-label">ROI</div></div>
+        <div class="res-card"><div class="res-num g" id="v3-break">—</div><div class="res-label">Точка безуб.</div></div>
+      </div>
+      <div id="calc3-comment" style="margin-top:1.25rem;padding:1rem;border-radius:10px;font-size:.88rem;display:none"></div>
+      <p style="font-size:.75rem;color:var(--muted);margin-top:1rem">* ФСЗН 2026: минимум 3 603 BYN/год (при доходе ≥ 10 296 BYN), уплата до 31 марта следующего года. В калькуляторе учтено ~300 BYN/мес.</p>
+    </div>
+    <div class="module-nav-btns">
+      <button class="nav-btn prev" onclick="goModule(4)">← Модуль 4</button>
+      <button class="nav-btn next" onclick="goModule(6)">Модуль 6 →</button>
+    </div>
+  </div>
+
+  <!-- MODULE 6 -->
+  <div class="module-view" id="view-6">
+    <div class="module-header">
+      <div class="module-num">Модуль 06</div>
+      <h2>Запуск и первые<br>продажи</h2>
+      <p class="module-desc">Логистика FBO vs FBS, внутренняя реклама, работа с отзывами. Чеклист запуска 2026.</p>
+    </div>
+    <div class="lessons" id="lessons-6"></div>
+    <div style="margin-top:2.5rem">
+      <h3 style="font-family:'Syne',sans-serif;margin-bottom:1.25rem">✅ Чеклист запуска 2026</h3>
+      <div class="cl-list" id="launch-checklist3"></div>
+    </div>
+    <div class="module-nav-btns">
+      <button class="nav-btn prev" onclick="goModule(5)">← Модуль 5</button>
+      <button class="nav-btn next" onclick="goModule(7)">Финал →</button>
+    </div>
+  </div>
+
+  <!-- MODULE 7 -->
+  <div class="module-view" id="view-7">
+    <div class="module-header">
+      <div class="module-num">Финальный модуль</div>
+      <h2>Масштабирование<br>и рост</h2>
+      <p class="module-desc">Стратегии роста, несколько товаров, «бесшовный» переход в ООО, делегирование.</p>
+    </div>
+    <div class="lessons" id="lessons-7"></div>
+    <div class="diploma" id="diploma" style="display:none">
+      <div class="diploma-icon">🎓</div>
+      <h2>Курс пройден!</h2>
+      <p>Вы изучили все модули. Вы знаете актуальные налоги 2026, умеете считать прибыль и готовы к реальным продажам на WB и OZON из Беларуси!</p>
+      <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--gold)" id="diploma-xp">0 XP</div>
+    </div>
+    <div class="module-nav-btns">
+      <button class="nav-btn prev" onclick="goModule(6)">← Модуль 6</button>
+      <button class="nav-btn next" onclick="goModule(0)" style="background:linear-gradient(135deg,var(--teal),var(--accent))">🏠 На главную</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+'use strict';
+
+var MODULES = [
+  {id:0,icon:'🏠',title:'Главная',sub:'Обзор курса'},
+  {id:1,icon:'📋',title:'Регистрация',sub:'ИП, счёт, ЭЦП 2026'},
+  {id:2,icon:'💰',title:'Налоги 2026',sub:'УСН, ФСЗН новые правила'},
+  {id:3,icon:'🔍',title:'Выбор ниши',sub:'Аналитика, товар'},
+  {id:4,icon:'🖼️',title:'Карточка',sub:'Фото, SEO, описание'},
+  {id:5,icon:'🧮',title:'Калькулятор',sub:'Расчёт прибыли 2026'},
+  {id:6,icon:'🚀',title:'Запуск',sub:'Логистика, реклама'},
+  {id:7,icon:'📈',title:'Масштаб',sub:'Рост и делегирование'},
+];
+
+var LESSONS = {
+  1:[
+    {ico:'🏢',title:'ИП vs ООО vs самозанятый в 2026 году',time:'12 мин',content:`
+      <p>В 2026 году для торговли на маркетплейсах доступны три организационные формы:</p>
+      <ul>
+        <li><strong>ИП</strong> — самый популярный выбор. Регистрация за 1 день через egry.by или МФЦ, ~25 BYN. ОКВЭД 47.91. Можно нанимать до 3 сотрудников без перехода на ООО.</li>
+        <li><strong>ООО/ЧУП</strong> — для партнёрств и крупного бизнеса. Сложнее в управлении, нужна бухгалтерия.</li>
+        <li><strong>Самозанятый (НПД)</strong> — только для товаров собственного производства. Лимит 60 000 BYN/год. Перепродажа запрещена.</li>
+      </ul>
+      <div class="callout new2026">✦ Новинка 2026: «Бесшовный» переход ИП → ООО без потери права на УСН. Организация, созданная ИП, сохраняет право на упрощёнку даже при сдаче в аренду имущества, ранее зарегистрированного за ИП.</div>
+      <div class="callout success">✅ Рекомендация: для старта — ИП. Переходите в ООО при обороте свыше 200 000+ BYN/год или при необходимости партнёрства.</div>
+    `,quiz:{q:'Какая форма бизнеса лучше всего подходит для старта торговли на WB?',opts:['ООО','Самозанятый','ИП','Акционерное общество'],correct:2,explain:'ИП оптимален: регистрация за 1 день, минимальные расходы, торговля любыми товарами. «Бесшовный» переход в ООО доступен позже.'}},
+    {ico:'🏦',title:'Расчётный счёт для ИП: выбираем банк',time:'8 мин',content:`
+      <p>Выплаты от WB и OZON приходят строго на расчётный счёт ИП, не на личный счёт физлица.</p>
+      <ul>
+        <li><strong>Альфа-Банк</strong> — хорошая интеграция с WB, быстрые операции</li>
+        <li><strong>МТБанк</strong> — популярен среди ИП, часто бесплатное обслуживание 3–6 мес</li>
+        <li><strong>Приорбанк</strong> — надёжный, удобная онлайн-бухгалтерия</li>
+        <li><strong>Белагропромбанк</strong> — низкие тарифы, менее удобный онлайн-банк</li>
+      </ul>
+      <div class="callout info">💡 Сравните: тариф за ведение счёта, комиссию за входящие переводы, мобильное приложение. Срок открытия: 1–3 рабочих дня.</div>
+    `},
+    {ico:'🔐',title:'ЭЦП и электронное взаимодействие с налоговой',time:'7 мин',content:`
+      <p>ЭЦП нужна для: подписания оферты с маркетплейсом, онлайн-подачи деклараций в nalog.gov.by.</p>
+      <ul>
+        <li>Где: <strong>РУЦ ГосСУОК</strong> (rca.by) — официальный удостоверяющий центр</li>
+        <li>Стоимость: ~80–120 BYN/год</li>
+        <li>Срок: 3 рабочих дня, личный визит</li>
+      </ul>
+      <div class="callout new2026">✦ 2026: Более 95% организаций и ИП перешли на электронное взаимодействие с налоговой. МНС продолжает упрощать цифровые сервисы — декларации, ФСЗН, все отчёты онлайн.</div>
+    `},
+  ],
+  2:[
+    {ico:'📊',title:'УСН 2026: новые лимиты и ставки',time:'15 мин',content:`
+      <p>С 1 января 2026 года в Беларуси действует новая редакция Налогового кодекса. Ключевые изменения по УСН:</p>
+      <ul>
+        <li><strong>Лимит для применения УСН в 2026:</strong> 3 735 000 BYN/год (было 3 500 000)</li>
+        <li><strong>Лимит для перехода на УСН с 2027:</strong> выручка за 2026 ≤ 2 800 000 BYN (было 2 625 000)</li>
+        <li><strong>Лимит бухучёта при УСН:</strong> при выручке > 960 000 BYN/год нужен параллельный бухучёт (было 900 000)</li>
+      </ul>
+      <p><strong>Ставки не изменились:</strong></p>
+      <ul>
+        <li>УСН 6% от выручки — выгодно при высокой марже (> 37.5%)</li>
+        <li>УСН 16% от прибыли (выручка − расходы) — выгодно при низкой марже</li>
+      </ul>
+      <div class="callout new2026">✦ Важно 2026: Уточнена дата признания выручки при торговле через маркетплейс. Теперь это дата прекращения обязательства маркетплейса перед продавцом по перечислению денег. Это влияет на правильный расчёт квартального налога.</div>
+      <div class="callout success">✅ Пример: при выручке 3 000 BYN/мес — УСН 6% = 180 BYN. При расходах 70% (2 100 BYN) — УСН 16% от прибыли 900 BYN = 144 BYN. Выгоднее УСН 16%!</div>
+    `,quiz:{q:'Каков лимит выручки для применения УСН в Беларуси в 2026 году?',opts:['3 000 000 BYN','3 500 000 BYN','3 735 000 BYN','5 000 000 BYN'],correct:2,explain:'С 1 января 2026 года лимит выручки для применения УСН повышен с 3 500 000 до 3 735 000 BYN/год по новой редакции НК РБ.'}},
+    {ico:'🏛️',title:'ФСЗН 2026: новые правила расчёта',time:'12 мин',content:`
+      <p>С 2026 года МЗП выросла до <strong>858 BYN</strong>. Порядок уплаты ФСЗН для ИП изменился — теперь расчёт дифференцированный:</p>
+      <table class="fszn-mini-table">
+        <tr><th>Чистый доход за год</th><th>База</th><th>ФСЗН/год</th></tr>
+        <tr><td>Меньше 10 296 BYN</td><td>Фактический доход</td><td>Доход × 35%</td></tr>
+        <tr><td>10 296 BYN и выше</td><td>12 МЗП = 10 296 BYN</td><td><strong>3 603,60 BYN</strong></td></tr>
+      </table>
+      <div class="callout new2026">✦ Новинки 2026: Срок уплаты перенесён с 1 марта на <strong>31 марта</strong> следующего года. ФСЗН сам рассчитывает сумму по данным МНС и присылает готовый документ. Форму ПУ-3 больше подавать не нужно!</div>
+      <div class="callout warning">⚠️ Чистый доход — это налоговая база подоходного налога после исключения расходов. Именно эту цифру ФСЗН получит от МНС.</div>
+    `,quiz:{q:'Каков минимальный взнос в ФСЗН для ИП в 2026 году при доходе выше 10 296 BYN?',opts:['2 629 BYN','3 077 BYN','3 603,60 BYN','4 500 BYN'],correct:2,explain:'МЗП 2026 = 858 BYN. Порог 12 МЗП = 10 296 BYN. Минимальный взнос = 10 296 × 35% = 3 603,60 BYN/год.'}},
+    {ico:'📝',title:'Декларации и отчётность ИП',time:'7 мин',content:`
+      <p>ИП на УСН подаёт декларацию 1 раз в квартал через nalog.gov.by:</p>
+      <ul>
+        <li><strong>Срок сдачи:</strong> до 20-го числа месяца после квартала (20 апр, 20 июл, 20 окт, 20 янв)</li>
+        <li><strong>Срок уплаты налога:</strong> до 22-го числа того же месяца</li>
+        <li><strong>Ведёте КУД</strong> (книгу учёта доходов) — онлайн или в бумаге</li>
+        <li><strong>ФСЗН</strong> уплачивается раз в год — до 31 марта следующего года</li>
+      </ul>
+      <div class="callout info">💡 При обороте до 960 000 BYN/год — упрощённый учёт. При обороте выше — параллельный бухучёт (можно через онлайн-сервисы или бухгалтера).</div>
+    `},
+  ],
+  3:[
+    {ico:'🔎',title:'Анализ ниши: как найти прибыльный товар',time:'18 мин',content:`
+      <p>Правильный выбор ниши — 80% успеха. Оцениваем по 5 критериям:</p>
+      <ul>
+        <li><strong>Спрос:</strong> сколько раз в месяц ищут товар? (MPStats, Moneyplace)</li>
+        <li><strong>Конкуренция:</strong> сколько продавцов в топ-20? Можно ли войти?</li>
+        <li><strong>Маржа:</strong> после всех расходов (включая УСН и ФСЗН) остаётся > 25%?</li>
+        <li><strong>Сезонность:</strong> продаётся круглый год или только в сезон?</li>
+        <li><strong>Сертификация:</strong> нужны ли декларации соответствия, разрешения?</li>
+      </ul>
+      <div class="callout info">🛠️ Инструменты: MPStats (~$30/мес), Moneyplace, бесплатные инструменты WB и OZON. Для старта достаточно бесплатного функционала.</div>
+      <div class="callout success">✅ Хорошая ниша для входа: спрос > 500 продаж/мес в топе, умеренная конкуренция, маржа > 25%, нет сезонности, простая сертификация.</div>
+    `,quiz:{q:'Какой минимальный уровень чистой маржи считается нормальным для старта?',opts:['5–10%','25–35%','50%+','Маржа не важна'],correct:1,explain:'25–35% — минимум с учётом налогов 2026 (УСН + ФСЗН ~300 BYN/мес), возможных возвратов, сезонных акций и непредвиденных расходов.'}},
+    {ico:'🧮',title:'Юнит-экономика с учётом налогов 2026',time:'12 мин',content:`
+      <p>Считайте прибыль на одну единицу товара ДО закупки. Пример (цена 60 BYN, WB 15%):</p>
+      <ul>
+        <li>Цена продажи: 60 BYN</li>
+        <li>Минус себестоимость: −18 BYN</li>
+        <li>Минус комиссия WB 15%: −9 BYN</li>
+        <li>Минус логистика: −1.5 BYN</li>
+        <li>Минус налог УСН 6%: −3.6 BYN</li>
+        <li>Минус доля ФСЗН (~1.5 BYN/ед при 200 продажах/мес)</li>
+        <li><strong>= Прибыль: ~26.4 BYN (44% маржа) ✅</strong></li>
+      </ul>
+      <div class="callout warning">⚠️ Не забывайте включать ФСЗН в расчёт! Минимум 3 603 BYN/год = ~300 BYN/мес = X BYN за единицу товара.</div>
+    `},
+  ],
+  4:[
+    {ico:'📸',title:'Фотографии, которые продают',time:'14 мин',content:`
+      <p>Фото — первое, что видит покупатель. Хорошие фото увеличивают конверсию в 3–5 раз:</p>
+      <ul>
+        <li><strong>Главное фото:</strong> белый фон, товар занимает 70–80% кадра</li>
+        <li><strong>Инфографика:</strong> ключевые характеристики прямо на фото</li>
+        <li><strong>Lifestyle:</strong> товар «в деле» — в интерьере, на человеке</li>
+        <li><strong>Видео-обложка:</strong> WB поддерживает видео, конверсия выше на 25–40%</li>
+      </ul>
+      <div class="callout info">💡 Хороший смартфон (Samsung S24/iPhone 15+) + белый картон + дневной свет = рабочие фото для старта. Профессиональный фотограф нужен позже.</div>
+    `},
+    {ico:'🔤',title:'SEO: как попасть в топ поиска',time:'10 мин',content:`
+      <p>Алгоритмы WB и OZON ранжируют товары по ключевым словам:</p>
+      <ul>
+        <li><strong>Название:</strong> 50–80 символов, главный запрос в начале</li>
+        <li><strong>Описание:</strong> 1000–2000 символов, органичные ключи</li>
+        <li><strong>Характеристики:</strong> заполните ВСЕ поля — алгоритм учитывает полноту</li>
+      </ul>
+      <div class="callout warning">⚠️ Не копируйте описания конкурентов — алгоритмы это замечают. Пишите уникальный текст.</div>
+    `,quiz:{q:'Что важнее всего для ранжирования карточки на маркетплейсе?',opts:['Только цена','Полнота + ключевые слова + продажи + рейтинг','Только количество фото','Только отзывы'],correct:1,explain:'Алгоритм WB/OZON — комплексный: полнота карточки, ключевые слова, конверсия, объём продаж, рейтинг. Нельзя выделить один фактор.'}},
+  ],
+  6:[
+    {ico:'📦',title:'FBO vs FBS: логистика в 2026',time:'12 мин',content:`
+      <p>Две основные схемы:</p>
+      <ul>
+        <li><strong>FBS (Fulfilment by Seller):</strong> храните у себя, привозите в ПВЗ при заказе (24–48 ч). Плюс: гибкость, нет платы за хранение. Минус: нужно ежедневно мониторить и ездить.</li>
+        <li><strong>FBO (Fulfilment by Operator):</strong> везёте партию на склад маркетплейса. Плюс: пассивность. Минус: плата за хранение + транспорт до склада.</li>
+      </ul>
+      <div class="callout info">💡 Склад WB в Минске (ул. Тимирязева). OZON — склады в РФ + доставка в РБ. Это влияет на сроки и логистические расходы.</div>
+      <div class="callout success">✅ Для старта: FBS. После стабильных 50+ продаж/мес — переходите на FBO для масштаба.</div>
+    `},
+    {ico:'📢',title:'Реклама на маркетплейсах: как не слить бюджет',time:'15 мин',content:`
+      <p>Внутренняя реклама WB и OZON — быстрый способ получить первые заказы:</p>
+      <ul>
+        <li><strong>WB:</strong> автокампания (для старта), реклама в поиске, в каталоге</li>
+        <li><strong>OZON:</strong> Трафареты (для старта), Брендовая полка, продвижение в поиске</li>
+        <li><strong>Ключевая метрика: ДРР</strong> (доля рекламных расходов) — должна быть < 15% от выручки</li>
+      </ul>
+      <div class="callout warning">⚠️ Реклама без хорошей карточки = выброшенные деньги. Сначала доведите карточку до идеала, потом запускайте рекламу.</div>
+    `,quiz:{q:'Какой максимальный ДРР (доля рекламных расходов) считается нормальным?',opts:['5%','15%','30%','50%'],correct:1,explain:'ДРР 15% — стандартный ориентир для маркетплейсов. Выше — реклама нерентабельна. Считается: расходы на рекламу / выручка × 100%.'}},
+  ],
+  7:[
+    {ico:'📊',title:'Аналитика: что отслеживать каждую неделю',time:'10 мин',content:`
+      <p>Данные без анализа — просто цифры. Еженедельный контроль:</p>
+      <ul>
+        <li><strong>CTR:</strong> норма 5–15%. Низкий = проблема с главным фото или ценой</li>
+        <li><strong>Конверсия:</strong> норма 3–8%. Низкая = проблема с описанием или фото</li>
+        <li><strong>Выкупаемость:</strong> норма 70%+. Низкая = несоответствие описания реальности</li>
+        <li><strong>Позиция в поиске:</strong> топ-30 = получаете продажи; ниже = нет</li>
+      </ul>
+    `},
+    {ico:'🏗️',title:'«Бесшовный» переход ИП → ООО в 2026',time:'12 мин',content:`
+      <p>В 2026 году появился механизм «бесшовного» перехода ИП в организацию (ООО/ЧУП) без потери права на УСН:</p>
+      <ul>
+        <li>Организация, созданная ИП, не утрачивает право на УСН при определённых условиях</li>
+        <li>Работает даже при сдаче в аренду недвижимости, ранее зарегистрированной за ИП</li>
+        <li>Имеет смысл при обороте 200 000+ BYN/год, партнёрстве или найме сотрудников</li>
+      </ul>
+      <div class="callout new2026">✦ 2026: При переходе в ООО ваша выручка сохраняется для расчёта лимита УСН — изменения НК устранили проблему двойного налогообложения при реорганизации.</div>
+      <div class="callout info">💡 Переход требует консультации с бухгалтером. Это не разовое действие — подготовьтесь заранее.</div>
+    `},
+    {ico:'👥',title:'Делегирование и команда',time:'8 мин',content:`
+      <p>При обороте 30 000+ BYN/мес одному становится сложно. Что делегировать:</p>
+      <ul>
+        <li>Упаковка и отгрузка → помощник (2–3 дня/нед)</li>
+        <li>Фото и дизайн → фрилансер (50–150 BYN/карточка)</li>
+        <li>Бухгалтерия → онлайн-бухгалтер (40–100 BYN/мес)</li>
+        <li>Реклама → специалист по маркетплейсам (% от оборота)</li>
+      </ul>
+      <div class="callout success">✅ Золотое правило: делегируйте операционную работу, освободите время для поиска новых товаров и аналитики.</div>
+    `},
+  ],
+};
+
+var CHECKLIST_LAUNCH3 = [
+  {text:'Зарегистрировать ИП',sub:'EGRY.BY или МФЦ, ~1 день, ~25 BYN'},
+  {text:'Подать заявление на УСН в ИМНС',sub:'В течение 20 дней. Лимит 2026: 3 735 000 BYN/год'},
+  {text:'Открыть расчётный счёт',sub:'Альфа-Банк, МТБанк или Приорбанк'},
+  {text:'Получить ЭЦП',sub:'РУЦ ГосСУОК, ~100 BYN/год, 3 рабочих дня'},
+  {text:'Провести анализ ниши',sub:'MPStats или бесплатные инструменты WB'},
+  {text:'Рассчитать юнит-экономику с учётом ФСЗН 2026',sub:'Включите ~300 BYN/мес ФСЗН в расходы'},
+  {text:'Найти поставщика и заказать тестовую партию',sub:'30–50 штук для тестирования'},
+  {text:'Зарегистрироваться на платформе',sub:'seller.wildberries.by или seller.ozon.ru'},
+  {text:'Подписать оферту через ЭЦП',sub:'Прочитайте условия — штрафы и политика акций'},
+  {text:'Сделать 5+ профессиональных фото',sub:'Белый фон + lifestyle + инфографика'},
+  {text:'Создать карточку товара',sub:'SEO-название + описание + все характеристики'},
+  {text:'Сделать первую отгрузку FBS',sub:'Привезти в ПВЗ при получении заказа'},
+  {text:'Запустить внутреннюю рекламу',sub:'Автокампания, 50–100 BYN для теста'},
+  {text:'Получить первые 5+ отзывов',sub:'Попросить знакомых — легально'},
+  {text:'Сдать квартальную декларацию УСН',sub:'До 20-го числа после квартала, nalog.gov.by'},
+  {text:'Уплатить ФСЗН за год',sub:'До 31 марта следующего года. Мин: 3 603 BYN/год'},
+];
+
+var ACHIEVEMENTS = [
+  {id:'first-lesson',ico:'📖',name:'Первый урок',req:'Пройдите первый урок'},
+  {id:'tax-expert',ico:'💰',name:'Налоговый эксперт 2026',req:'Пройдите модуль 2'},
+  {id:'half-course',ico:'⭐',name:'Полпути',req:'Пройдите 50% уроков'},
+  {id:'calculator',ico:'🧮',name:'Финансист',req:'Откройте калькулятор'},
+  {id:'checklist-pro',ico:'✅',name:'Организатор',req:'Заполните чеклист'},
+  {id:'course-done',ico:'🎓',name:'Выпускник Академии',req:'Пройдите весь курс'},
+];
+
+var state = {};
+try { state = JSON.parse(localStorage.getItem('academy-v3-2026') || '{}'); } catch(e) {}
+state.completedLessons = state.completedLessons || [];
+state.xp = state.xp || 0;
+state.achievements = state.achievements || [];
+state.clChecked = state.clChecked || [];
+state.currentModule = state.currentModule || 0;
+
+function saveState() { try { localStorage.setItem('academy-v3-2026', JSON.stringify(state)); } catch(e) {} }
+
+var totalLessons = Object.values(LESSONS).reduce(function(a, ls) { return a + ls.length; }, 0);
+
+var LEVELS = [
+  {name:'Новичок',xp:0},{name:'Студент',xp:100},{name:'Практикант',xp:300},
+  {name:'Продавец',xp:600},{name:'Эксперт',xp:1000},
+];
+
+function getLevel() {
+  var l = LEVELS[0];
+  for (var i = 0; i < LEVELS.length; i++) { if (state.xp >= LEVELS[i].xp) l = LEVELS[i]; }
+  return l;
+}
+
+function updateXPDisplay() {
+  var lv = getLevel();
+  var lvIdx = LEVELS.indexOf(lv);
+  var nextLv = LEVELS[lvIdx + 1];
+  var el;
+  if ((el = document.getElementById('level-label'))) el.textContent = lv.name;
+  if ((el = document.getElementById('xp-num'))) el.textContent = state.xp + ' XP';
+  var pct = nextLv ? ((state.xp - lv.xp) / (nextLv.xp - lv.xp) * 100) : 100;
+  if ((el = document.getElementById('xp-fill'))) el.style.width = Math.min(100, pct) + '%';
+  if ((el = document.getElementById('ov-xp'))) el.textContent = state.xp;
+  if ((el = document.getElementById('diploma-xp'))) el.textContent = state.xp + ' XP';
+}
+
+function addXP(n) { state.xp += n; saveState(); updateXPDisplay(); checkAchievements(); }
+
+function unlockAch(id) {
+  if (!state.achievements.includes(id)) {
+    state.achievements.push(id); saveState(); renderAchievements(); addXP(50);
+  }
+}
+
+function checkAchievements() {
+  if (state.completedLessons.length >= 1) unlockAch('first-lesson');
+  var mod2 = (LESSONS[2] || []).every(function(_, i) { return state.completedLessons.includes('2-' + i); });
+  if (mod2) unlockAch('tax-expert');
+  if (state.completedLessons.length >= Math.floor(totalLessons / 2)) unlockAch('half-course');
+  if (state.completedLessons.length >= totalLessons) unlockAch('course-done');
+  if (state.clChecked.length >= 5) unlockAch('checklist-pro');
+}
+
+function renderAchievements() {
+  var block = document.getElementById('achievements-block');
+  if (!block) return;
+  block.innerHTML = '';
+  ACHIEVEMENTS.forEach(function(a) {
+    var el = document.createElement('div');
+    el.className = 'ach' + (state.achievements.includes(a.id) ? ' unlocked' : '');
+    el.innerHTML = '<span class="ach-icon">' + a.ico + '</span> ' + a.name;
+    el.title = a.req;
+    block.appendChild(el);
+  });
+}
+
+function goModule(id) {
+  document.querySelectorAll('.module-view').forEach(function(v) { v.classList.remove('active'); });
+  var view = document.getElementById('view-' + id);
+  if (view) view.classList.add('active');
+  document.querySelectorAll('.nav-module').forEach(function(m) { m.classList.remove('active'); });
+  var navMod = document.querySelector('[data-mod="' + id + '"]');
+  if (navMod) navMod.classList.add('active');
+  state.currentModule = id; saveState();
+  var mod = MODULES.find(function(m) { return m.id === id; });
+  var el = document.getElementById('current-module-name');
+  if (el) el.textContent = mod ? mod.title : '';
+  if (id === 5) unlockAch('calculator');
+  updateOverview();
+  window.scrollTo(0, 0);
+  document.getElementById('sidebar').classList.remove('open');
+}
+
+function buildNav() {
+  var nav = document.getElementById('modules-nav');
+  if (!nav) return;
+  nav.innerHTML = '<div class="nav-section-label">Программа курса 2026</div>';
+  MODULES.forEach(function(m) {
+    var lessons = LESSONS[m.id] || [];
+    var doneLessons = lessons.filter(function(_, i) { return state.completedLessons.includes(m.id + '-' + i); }).length;
+    var allDone = lessons.length > 0 && doneLessons === lessons.length;
+    var el = document.createElement('div');
+    el.className = 'nav-module' + (state.currentModule === m.id ? ' active' : '');
+    el.dataset.mod = m.id;
+    el.innerHTML =
+      '<div class="module-icon">' + m.icon + '</div>' +
+      '<div><div class="module-nav-title">' + m.title + '</div>' +
+      '<div class="module-nav-sub">' + (lessons.length ? doneLessons + '/' + lessons.length + ' уроков' : m.sub) + '</div></div>' +
+      '<div class="module-check' + (allDone ? ' done' : '') + '"></div>';
+    el.onclick = function(id) { return function() { goModule(id); }; }(m.id);
+    nav.appendChild(el);
+  });
+}
+
+function buildLessons() {
+  Object.entries(LESSONS).forEach(function(entry) {
+    var modId = entry[0], lessons = entry[1];
+    var container = document.getElementById('lessons-' + modId);
+    if (!container) return;
+    container.innerHTML = '';
+    lessons.forEach(function(lesson, i) {
+      var key = modId + '-' + i;
+      var isDone = state.completedLessons.includes(key);
+      var card = document.createElement('div');
+      card.className = 'lesson-card' + (isDone ? ' completed' : '');
+      card.id = 'lesson-' + key;
+      var quizHtml = '';
+      if (lesson.quiz) {
+        quizHtml = '<div class="quiz-block" id="quiz-' + key + '">' +
+          '<div class="quiz-title">🧩 Проверь себя</div>' +
+          '<div class="quiz-sub">Ответь на вопрос для закрепления материала</div>' +
+          '<div class="quiz-q">' + lesson.quiz.q + '</div>' +
+          '<div class="quiz-opts">' +
+          lesson.quiz.opts.map(function(o, oi) {
+            return '<div class="quiz-opt" onclick="answerQuiz(\'' + key + '\',' + oi + ',' + lesson.quiz.correct + ',\'' + lesson.quiz.explain.replace(/'/g,"'") + '\')">' + o + '</div>';
+          }).join('') +
+          '</div><div class="quiz-result" id="qr-' + key + '"></div></div>';
+      }
+      card.innerHTML =
+        '<div class="lesson-header" onclick="toggleLesson(\'' + key + '\')">' +
+          '<div class="lesson-ico">' + lesson.ico + '</div>' +
+          '<div><div class="lesson-title">' + lesson.title + '</div>' +
+          '<div class="lesson-meta" id="lm-' + key + '">⏱️ ' + lesson.time + ' · ' + (isDone ? '✅ Пройден' : 'Не пройден') + '</div></div>' +
+          '<div class="lesson-toggle">▼</div>' +
+        '</div>' +
+        '<div class="lesson-body">' + lesson.content + quizHtml +
+          '<button class="mark-done-btn" id="mdb-' + key + '" onclick="markDone(\'' + key + '\')">' + (isDone ? '✅ Пройден' : 'Отметить как пройденный') + '</button>' +
+        '</div>';
+      container.appendChild(card);
+    });
+  });
+}
+
+function toggleLesson(key) {
+  var card = document.getElementById('lesson-' + key);
+  if (card) card.classList.toggle('open');
+}
+
+function markDone(key) {
+  if (!state.completedLessons.includes(key)) { state.completedLessons.push(key); addXP(25); saveState(); }
+  var card = document.getElementById('lesson-' + key);
+  if (card) card.classList.add('completed');
+  var metaEl = document.getElementById('lm-' + key);
+  if (metaEl) metaEl.textContent = '⏱️ — · ✅ Пройден';
+  var btnEl = document.getElementById('mdb-' + key);
+  if (btnEl) btnEl.textContent = '✅ Пройден';
+  buildNav(); updateOverview(); checkAchievements();
+  if (state.completedLessons.length >= totalLessons) {
+    var dip = document.getElementById('diploma');
+    if (dip) dip.style.display = 'block';
+  }
+}
+
+function answerQuiz(key, chosen, correct, explain) {
+  var block = document.getElementById('quiz-' + key);
+  if (!block) return;
+  var opts = block.querySelectorAll('.quiz-opt');
+  opts.forEach(function(o, i) {
+    o.style.pointerEvents = 'none';
+    if (i === correct) o.classList.add('correct');
+    else if (i === chosen) o.classList.add('wrong');
+  });
+  var res = document.getElementById('qr-' + key);
+  if (!res) return;
+  res.className = 'quiz-result show ' + (chosen === correct ? 'correct' : 'wrong');
+  res.textContent = chosen === correct ? '✅ Верно! ' + explain : '❌ Не совсем. ' + explain;
+  if (chosen === correct) addXP(15);
+}
+
+function updateOverview() {
+  var done = state.completedLessons.length;
+  var pct  = Math.round(done / totalLessons * 100);
+  var el;
+  if ((el = document.getElementById('ov-done'))) el.textContent = done;
+  if ((el = document.getElementById('ov-pct')))  el.textContent = pct + '%';
+  if ((el = document.getElementById('ov-fill'))) el.style.width = pct + '%';
+  updateXPDisplay(); renderAchievements(); buildNav();
+}
+
+function buildOutline() {
+  var el = document.getElementById('course-outline');
+  if (!el) return;
+  el.innerHTML = '';
+  MODULES.filter(function(m) { return m.id > 0; }).forEach(function(m) {
+    var lessons = LESSONS[m.id] || [];
+    var div = document.createElement('div');
+    div.style.cssText = 'background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:.75rem;cursor:pointer;transition:border-color .2s';
+    div.onmouseover = function() { div.style.borderColor = 'var(--accent)'; };
+    div.onmouseout  = function() { div.style.borderColor = 'var(--border)'; };
+    div.innerHTML =
+      '<div style="display:flex;align-items:center;gap:1rem">' +
+      '<span style="font-size:1.2rem">' + m.icon + '</span>' +
+      '<div style="flex:1"><div style="font-weight:600;font-size:.92rem">' + m.title + '</div>' +
+      '<div style="font-size:.75rem;color:var(--muted);margin-top:.15rem">' + lessons.length + ' уроков</div></div>' +
+      '<span style="font-size:.8rem;color:var(--accent)">Перейти →</span></div>';
+    div.onclick = function(id) { return function() { goModule(id); }; }(m.id);
+    el.appendChild(div);
+  });
+}
+
+function buildChecklist3() {
+  var list = document.getElementById('launch-checklist3');
+  if (!list) return;
+  list.innerHTML = '';
+  CHECKLIST_LAUNCH3.forEach(function(item, i) {
+    var done = state.clChecked.includes(i);
+    var el = document.createElement('div');
+    el.className = 'cl-item' + (done ? ' done' : '');
+    el.innerHTML =
+      '<div class="cl-box">' + (done ? '✓' : '') + '</div>' +
+      '<div><div class="cl-text">' + item.text + '</div><div class="cl-sub">' + item.sub + '</div></div>';
+    el.onclick = function(idx) {
+      return function() {
+        var pos = state.clChecked.indexOf(idx);
+        if (pos > -1) state.clChecked.splice(pos, 1);
+        else { state.clChecked.push(idx); addXP(10); }
+        saveState(); buildChecklist3(); checkAchievements();
+      };
+    }(i);
+    list.appendChild(el);
+  });
+}
+
+function doCalc3() {
+  var price = parseFloat(document.getElementById('cp3').value) || 0;
+  var cost  = parseFloat(document.getElementById('cc3').value) || 0;
+  var qty   = parseFloat(document.getElementById('cq3').value) || 0;
+  var comm  = parseFloat(document.getElementById('cpf3').value) || 0;
+  var log   = parseFloat(document.getElementById('cl3').value) || 0;
+  var ads   = parseFloat(document.getElementById('cad3').value) || 0;
+  var stor  = parseFloat(document.getElementById('cst3').value) || 0;
+  var taxMode = document.getElementById('ctax3').value;
+
+  var rev     = price * qty;
+  var costAmt = cost * qty;
+  var commAmt = rev * comm / 100;
+  var logAmt  = log * qty;
+  var taxAmt;
+  if (taxMode === '6r') {
+    taxAmt = rev * 0.06;
+  } else {
+    taxAmt = Math.max(0, (rev - commAmt - logAmt - costAmt - ads - stor) * 0.16);
+  }
+  var fszn   = 300;
+  var totalE = costAmt + commAmt + logAmt + ads + stor + taxAmt + fszn;
+  var profit = rev - totalE;
+  var margin = rev > 0 ? (profit / rev * 100) : 0;
+  var roi    = (costAmt + ads) > 0 ? (profit / (costAmt + ads) * 100) : 0;
+  var unitMargin = price - cost - price * comm / 100 - log;
+  var breakEven  = unitMargin > 0 ? Math.ceil((ads + stor + taxAmt + fszn) / unitMargin) : 0;
+
+  function setEl(id, val, cls) {
+    var el = document.getElementById(id);
+    if (el) { el.textContent = val; if (cls) el.className = 'res-num ' + cls; }
+  }
+  setEl('v3-rev', rev.toFixed(0) + ' BYN', 'g');
+  setEl('v3-exp', totalE.toFixed(0) + ' BYN', 'y');
+  setEl('v3-profit', profit.toFixed(0) + ' BYN', profit >= 0 ? 'g' : 'r');
+  setEl('v3-margin', margin.toFixed(1) + '%', margin > 20 ? 'g' : margin > 0 ? 'y' : 'r');
+  setEl('v3-roi', roi.toFixed(0) + '%', roi > 25 ? 'g' : roi > 0 ? 'y' : 'r');
+  setEl('v3-break', breakEven + ' шт', 'g');
+
+  var comment = document.getElementById('calc3-comment');
+  if (comment) {
+    comment.style.display = 'block';
+    if (profit < 0) {
+      comment.style.background = 'rgba(239,68,68,.1)'; comment.style.color = '#ef4444';
+      comment.textContent = '⛔ Убыточно. Повысьте цену, снизьте себестоимость или найдите более выгодную нишу.';
+    } else if (margin < 15) {
+      comment.style.background = 'rgba(245,158,11,.1)'; comment.style.color = 'var(--warning)';
+      comment.textContent = '⚠️ Маржа низкая. Рискованно: любой возврат или акция могут уйти в минус.';
+    } else {
+      comment.style.background = 'rgba(0,212,180,.1)'; comment.style.color = 'var(--teal)';
+      comment.textContent = '✅ Хорошая маржа! Товар перспективен. Масштабируйтесь.';
+    }
+  }
+  unlockAch('calculator');
+}
+
+document.getElementById('menu-toggle').onclick = function() {
+  document.getElementById('sidebar').classList.toggle('open');
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+  buildNav();
+  buildLessons();
+  buildOutline();
+  buildChecklist3();
+  renderAchievements();
+  updateOverview();
+  goModule(state.currentModule || 0);
+  doCalc3();
+});
+</script>
+</body>
+</html>

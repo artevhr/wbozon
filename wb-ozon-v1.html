@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Маркетплейсы WB & OZON — Беларусь 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --surface: #12121a;
+  --card: #1a1a26;
+  --border: #2a2a3e;
+  --wb: #cb11ab;
+  --ozon: #005bff;
+  --accent: #00e5a0;
+  --text: #e8e8f0;
+  --muted: #6b6b8a;
+  --gold: #f5c842;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+header{position:sticky;top:0;z-index:100;background:rgba(10,10,15,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 2rem}
+nav{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:2rem;height:60px}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:2px;background:linear-gradient(90deg,var(--wb),var(--ozon));-webkit-background-clip:text;-webkit-text-fill-color:transparent;flex-shrink:0}
+.nav-links{display:flex;gap:1.5rem;list-style:none;font-size:.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;flex-wrap:wrap}
+.nav-links a{color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+.hero{min-height:90vh;display:flex;flex-direction:column;justify-content:center;max-width:1100px;margin:0 auto;padding:4rem 2rem;position:relative}
+.hero::before{content:'';position:absolute;top:-200px;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(203,17,171,.12) 0%,transparent 70%);pointer-events:none}
+.badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(0,229,160,.1);border:1px solid rgba(0,229,160,.3);color:var(--accent);padding:.4rem 1rem;border-radius:100px;font-size:.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:2rem;width:fit-content}
+.badge::before{content:'●';font-size:.6rem;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,8vw,7rem);line-height:.95;letter-spacing:2px;margin-bottom:1.5rem}
+h1 .wb-clr{color:var(--wb)}
+h1 .oz-clr{color:var(--ozon)}
+.hero-sub{font-size:1.15rem;color:var(--muted);max-width:560px;font-weight:400;margin-bottom:3rem}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{padding:.85rem 2rem;border-radius:8px;font-family:'Manrope',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:all .2s;border:none;display:inline-flex;align-items:center;gap:.5rem}
+.btn-primary{background:var(--accent);color:#0a0a0f}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,229,160,.3)}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;max-width:1100px;margin:0 auto 5rem;padding:0 2rem}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;transition:border-color .2s}
+.stat-card:hover{border-color:var(--accent)}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:1px;background:linear-gradient(135deg,var(--accent),#00b4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-label{font-size:.8rem;color:var(--muted);margin-top:.3rem}
+section{max-width:1100px;margin:0 auto;padding:4rem 2rem}
+.section-label{font-size:.7rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem}
+h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3.5rem);letter-spacing:2px;margin-bottom:1.5rem}
+h3{font-size:1.2rem;font-weight:700;margin-bottom:.75rem}
+p{color:#b0b0c8;margin-bottom:1rem}
+.steps{display:flex;flex-direction:column;gap:1.5rem}
+.step{display:grid;grid-template-columns:60px 1fr;gap:1.5rem;align-items:start;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.75rem;transition:all .3s}
+.step:hover{border-color:var(--accent);transform:translateX(4px)}
+.step-num{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;line-height:1;color:var(--border);transition:color .3s}
+.step:hover .step-num{color:var(--accent)}
+.platform-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+@media(max-width:640px){.platform-grid{grid-template-columns:1fr}}
+.platform-card{border-radius:16px;padding:2rem;border:1px solid var(--border)}
+.platform-card.wb{border-top:3px solid var(--wb);background:rgba(203,17,171,.04)}
+.platform-card.ozon{border-top:3px solid var(--ozon);background:rgba(0,91,255,.04)}
+.platform-logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:2px;margin-bottom:1rem}
+.platform-logo.wb{color:var(--wb)}
+.platform-logo.ozon{color:var(--ozon)}
+.pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
+.pros h4,.cons h4{font-size:.75rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:.5rem}
+.pros h4{color:var(--accent)}
+.cons h4{color:#ff6b6b}
+.pros li,.cons li{font-size:.85rem;color:var(--muted);margin-left:1rem;margin-bottom:.25rem}
+.tax-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem}
+.tax-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.75rem;position:relative;overflow:hidden}
+.tax-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.tax-card.recommended::before{background:var(--accent)}
+.tax-card.standard::before{background:var(--gold)}
+.tax-card.npd::before{background:var(--ozon)}
+.tax-badge{display:inline-block;padding:.2rem .7rem;border-radius:100px;font-size:.65rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:.75rem}
+.tax-badge.green{background:rgba(0,229,160,.15);color:var(--accent)}
+.tax-badge.yellow{background:rgba(245,200,66,.15);color:var(--gold)}
+.tax-badge.blue{background:rgba(0,91,255,.15);color:var(--ozon)}
+.tax-rate{font-family:'Bebas Neue',sans-serif;font-size:3rem;line-height:1;margin-bottom:.5rem}
+.update-tag{display:inline-block;background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.25);border-radius:4px;padding:.15rem .5rem;font-size:.65rem;color:var(--gold);margin-bottom:.5rem;font-weight:700}
+.calc-wrapper{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2.5rem;max-width:760px}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
+@media(max-width:560px){.calc-grid{grid-template-columns:1fr}}
+.field label{display:block;font-size:.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+.field input,.field select{width:100%;padding:.75rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:'Manrope',sans-serif;font-size:.95rem;transition:border-color .2s;outline:none}
+.field input:focus,.field select:focus{border-color:var(--accent)}
+.field select option{background:var(--surface)}
+.calc-result{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.75rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1.5rem}
+.result-item{text-align:center}
+.result-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:1px}
+.result-num.positive{color:var(--accent)}
+.result-num.negative{color:#ff6b6b}
+.result-num.neutral{color:var(--gold)}
+.result-label{font-size:.75rem;color:var(--muted);margin-top:.25rem}
+.checklist{display:flex;flex-direction:column;gap:.6rem}
+.check-item{display:flex;align-items:flex-start;gap:1rem;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;cursor:pointer;transition:all .2s;user-select:none}
+.check-item:hover{border-color:var(--muted)}
+.check-item.done{border-color:var(--accent);background:rgba(0,229,160,.05)}
+.check-box{width:22px;height:22px;border-radius:6px;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s;margin-top:1px;font-size:.7rem;font-weight:800}
+.check-item.done .check-box{background:var(--accent);border-color:var(--accent);color:#0a0a0f}
+.check-text{font-size:.9rem;font-weight:500}
+.check-sub{font-size:.78rem;color:var(--muted);margin-top:.2rem}
+.check-category{font-size:.7rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--accent);padding:1.5rem 0 .5rem}
+.progress-bar-wrap{background:var(--surface);border-radius:100px;height:6px;margin-bottom:2rem;overflow:hidden}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--accent),#00b4ff);border-radius:100px;transition:width .4s}
+.progress-text{font-size:.8rem;color:var(--muted);margin-bottom:.5rem}
+.tip-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+.tip-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;border-left:3px solid var(--gold)}
+.tip-icon{font-size:1.5rem;margin-bottom:.75rem}
+footer{border-top:1px solid var(--border);text-align:center;padding:3rem 2rem;color:var(--muted);font-size:.85rem}
+footer span{color:var(--accent)}
+.divider{border:none;border-top:1px solid var(--border);max-width:1100px;margin:0 auto}
+.reveal{opacity:0;transform:translateY(24px);transition:all .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.warning-box{background:rgba(245,200,66,.06);border:1px solid rgba(245,200,66,.25);border-radius:14px;padding:1.5rem;margin-top:2rem}
+.fszn-table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:.85rem}
+.fszn-table th,.fszn-table td{padding:.6rem 1rem;border:1px solid var(--border);text-align:left}
+.fszn-table th{background:var(--surface);color:var(--muted);font-weight:700;letter-spacing:.5px}
+.fszn-table td{color:#b0b0c8}
+.fszn-table tr:hover td{background:rgba(255,255,255,.02)}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">MP·BY</div>
+    <ul class="nav-links">
+      <li><a href="#start">Старт</a></li>
+      <li><a href="#platforms">Платформы</a></li>
+      <li><a href="#taxes">Налоги</a></li>
+      <li><a href="#calculator">Калькулятор</a></li>
+      <li><a href="#checklist">Чеклист</a></li>
+      <li><a href="#tips">Советы</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="badge">Актуально — 2026</div>
+  <h1>
+    ПРОДАВАЙ<br>
+    НА <span class="wb-clr">WB</span> &<br>
+    <span class="oz-clr">OZON</span>
+  </h1>
+  <p class="hero-sub">Полный гид по выходу на маркетплейсы из Беларуси в 2026 году: пошаговый план, актуальные налоги по новому НК, калькулятор прибыли и чеклист запуска.</p>
+  <div class="hero-ctas">
+    <a href="#start" class="btn btn-primary">▶ Начать</a>
+    <a href="#calculator" class="btn btn-ghost">⚡ Калькулятор</a>
+  </div>
+</div>
+
+<div class="stats reveal">
+  <div class="stat-card">
+    <div class="stat-num">3 735 000</div>
+    <div class="stat-label">Лимит выручки УСН 2026 (BYN/год)</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">858 BYN</div>
+    <div class="stat-label">МЗП с 1 января 2026</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">3 603</div>
+    <div class="stat-label">Мин. взнос ФСЗН за 2026 (BYN/год)</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">31 марта</div>
+    <div class="stat-label">Новый срок уплаты ФСЗН за год</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<section id="start">
+  <div class="section-label reveal">С чего начать</div>
+  <h2 class="reveal">ПОШАГОВЫЙ<br>ПЛАН ЗАПУСКА</h2>
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <div>
+        <h3>Выберите организационную форму</h3>
+        <p>Для маркетплейсов в 2026 году подходят: <strong style="color:var(--text)">ИП</strong> (самый популярный, регистрация за 1 день через EGRY.BY или МФЦ, ~25 BYN), <strong style="color:var(--text)">ООО/ЧУП</strong> (для партнёрств и крупного бизнеса) и <strong style="color:var(--text)">самозанятый/НПД</strong> (только для товаров собственного производства, лимит 60 000 BYN/год). Новинка 2026: ИП могут перейти в ООО через «бесшовный переход» без потери права на УСН. ОКВЭД при регистрации: <strong style="color:var(--accent)">47.91</strong> — розничная торговля через интернет.</p>
+      </div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <div>
+        <h3>Встаньте на учёт и выберите УСН</h3>
+        <p>После регистрации ИП у вас есть <strong style="color:var(--text)">20 дней</strong> для подачи заявления на УСН в ИМНС. В 2026 году лимит выручки для применения УСН — <strong style="color:var(--accent)">3 735 000 BYN/год</strong> (увеличен с 3 500 000). Для перехода на УСН с 2027 года ваша выручка за 2026 не должна превысить <strong style="color:var(--accent)">2 800 000 BYN</strong>. Подавайте через nalog.gov.by — в 2026 году 95%+ ИП уже работают онлайн с налоговой.</p>
+      </div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <div>
+        <h3>Откройте расчётный счёт</h3>
+        <p>Счёт нужен для получения выплат от маркетплейсов — они приходят строго на счёт ИП, не на физлицо. Хорошо работают с WB и OZON: <strong style="color:var(--text)">Альфа-Банк, МТБанк, Приорбанк</strong>. Сравните тарифы — некоторые банки предлагают бесплатное обслуживание первые 3–6 месяцев для ИП. Срок открытия: 1–3 рабочих дня.</p>
+      </div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">04</div>
+      <div>
+        <h3>Получите ЭЦП</h3>
+        <p>Электронная цифровая подпись нужна для подписания оферты с маркетплейсами и для онлайн-подачи деклараций. Где получить: <strong style="color:var(--text)">РУЦ ГосСУОК</strong> (rca.by). Стоимость: ~80–120 BYN в год. Срок: 3 рабочих дня, личный визит. Доступны форматы: USB-токен или облачная подпись.</p>
+      </div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">05</div>
+      <div>
+        <h3>Зарегистрируйтесь на платформе</h3>
+        <p>WB: <strong style="color:var(--text)">seller.wildberries.by</strong> — ~15 минут, нужны УНП, паспорт, реквизиты, ЭЦП. OZON: <strong style="color:var(--text)">seller.ozon.ru</strong> — аналогично. Важное изменение 2026: в НК уточнена дата признания выручки при торговле через маркетплейс — это дата прекращения обязательства площадки по перечислению денег продавцу. Это влияет на правильный расчёт квартального налога УСН.</p>
+      </div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">06</div>
+      <div>
+        <h3>Выберите и закупите товар</h3>
+        <p>Анализируйте спрос через <strong style="color:var(--text)">MPStats, Moneyplace или WB Stats</strong>. Для старта — товары с ценой 25–200 BYN, вес до 1 кг, без сезонности и сложной сертификации. Сильные ниши для белорусов: льняные изделия, деревообработка, натуральная косметика — «Сделано в Беларуси» вызывает доверие у покупателей. Начинайте с тестовой партии 30–50 штук.</p>
+      </div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">07</div>
+      <div>
+        <h3>Создайте карточку и запустите продажи</h3>
+        <p>5+ профессиональных фото (белый фон + lifestyle + инфографика), SEO-описание с ключевыми словами, заполненные характеристики. Выберите схему: <strong style="color:var(--text)">FBS</strong> (ваш склад → привоз в ПВЗ при заказе, идеально для старта) или <strong style="color:var(--text)">FBO</strong> (склад маркетплейса, удобнее при стабильных 50+ продажах/мес). Запустите внутреннюю рекламу от 50 BYN для теста.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="platforms">
+  <div class="section-label reveal">Платформы</div>
+  <h2 class="reveal">WB VS OZON:<br>ЧТО ВЫБРАТЬ?</h2>
+  <div class="platform-grid reveal">
+    <div class="platform-card wb">
+      <div class="platform-logo wb">Wildberries</div>
+      <p style="font-size:.9rem;">Крупнейший маркетплейс РФ и РБ. Огромная аудитория, склад в Минске (ул. Тимирязева), выплаты 2 раза в неделю, выровненный курс BYN.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>➕ Плюсы</h4>
+          <ul><li>Большая аудитория в РБ</li><li>Склад в Минске</li><li>Быстрые выплаты</li><li>Понятная логистика</li></ul>
+        </div>
+        <div class="cons"><h4>➖ Минусы</h4>
+          <ul><li>Жёсткая штрафная система</li><li>Обязательные акции</li><li>Высокая конкуренция</li><li>Сложный интерфейс</li></ul>
+        </div>
+      </div>
+      <p style="margin-top:1rem;font-size:.85rem;color:var(--muted)">Комиссия: <strong style="color:var(--wb)">3–23%</strong> в зависимости от категории</p>
+    </div>
+    <div class="platform-card ozon">
+      <div class="platform-logo ozon">OZON</div>
+      <p style="font-size:.9rem;">Растущая платформа с лояльными условиями для новичков из РБ, детальной аналитикой и удобным личным кабинетом.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>➕ Плюсы</h4>
+          <ul><li>Удобный ЛК + аналитика</li><li>Лояльней к новичкам</li><li>Меньше штрафов</li><li>Хорошая поддержка</li></ul>
+        </div>
+        <div class="cons"><h4>➖ Минусы</h4>
+          <ul><li>Меньше аудитории в РБ</li><li>Склады в РФ</li><li>Дольше доставка</li><li>Курсовые риски</li></ul>
+        </div>
+      </div>
+      <p style="margin-top:1rem;font-size:.85rem;color:var(--muted)">Комиссия: <strong style="color:var(--ozon)">4–25%</strong> в зависимости от категории</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="taxes">
+  <div class="section-label reveal">Налоги 2026</div>
+  <h2 class="reveal">НАЛОГИ ДЛЯ<br>БЕЛОРУССКИХ ИП</h2>
+  <p class="reveal" style="max-width:680px;margin-bottom:.5rem;">Данные актуальны по новой редакции Налогового кодекса РБ с 1 января 2026 года. Ключевые изменения: повышены лимиты УСН, вырос МЗП до 858 BYN, изменён порядок ФСЗН и перенесён срок уплаты.</p>
+
+  <div class="tax-cards reveal">
+    <div class="tax-card recommended">
+      <div class="tax-badge green">★ Рекомендуется</div>
+      <div class="update-tag">✦ Лимит обновлён 01.01.2026</div>
+      <div class="tax-rate" style="color:var(--accent)">6%</div>
+      <h3>УСН — от выручки</h3>
+      <p style="font-size:.9rem;">6% от любой поступившей суммы, независимо от расходов. Просто, прозрачно, не нужен бухгалтер. Лимит в 2026 году — <strong style="color:var(--text)">3 735 000 BYN/год</strong>. При выручке выше 960 000 BYN/год — нужен параллельный бухучёт.</p>
+      <ul style="font-size:.85rem;color:var(--muted);margin-left:1.25rem;margin-top:.75rem">
+        <li>Декларация раз в квартал онлайн</li>
+        <li>Выгодно при марже > 37.5%</li>
+        <li>ФСЗН платится раз в год до 31.03</li>
+      </ul>
+    </div>
+    <div class="tax-card standard">
+      <div class="tax-badge yellow">С расходами</div>
+      <div class="update-tag">✦ Лимит обновлён 01.01.2026</div>
+      <div class="tax-rate" style="color:var(--gold)">16%</div>
+      <h3>УСН — от прибыли</h3>
+      <p style="font-size:.9rem;">16% от чистой прибыли (выручка − затраты). Выгоднее, когда себестоимость > 62.5% от цены продажи. Те же лимиты: <strong style="color:var(--text)">3 735 000 BYN/год</strong>.</p>
+      <ul style="font-size:.85rem;color:var(--muted);margin-left:1.25rem;margin-top:.75rem">
+        <li>Нужен учёт всех расходов с документами</li>
+        <li>Рекомендуется бухгалтер или ПО</li>
+        <li>Выгодно при низкой марже</li>
+      </ul>
+    </div>
+    <div class="tax-card npd">
+      <div class="tax-badge blue">Самозанятый</div>
+      <div class="tax-rate" style="color:var(--ozon)">НПД</div>
+      <h3>Налог на профдоход</h3>
+      <p style="font-size:.9rem;">Только для <strong style="color:var(--text)">товаров собственного изготовления</strong>. Лимит 60 000 BYN/год. Новинка 2026: самозанятые могут принимать оплату в криптовалюте через белорусские криптобанки (Указ №19 от 16.01.2026).</p>
+      <ul style="font-size:.85rem;color:var(--muted);margin-left:1.25rem;margin-top:.75rem">
+        <li>10% от физлиц, 20% от юрлиц</li>
+        <li>Перепродажа — строго запрещена</li>
+        <li>ФСЗН 248 BYN/мес (добровольно)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="warning-box reveal">
+    <h3 style="color:var(--gold);margin-bottom:1rem;">⚠️ ФСЗН 2026 — новые правила</h3>
+    <p style="font-size:.9rem;margin-bottom:.75rem;color:#b0b0c8;"><strong style="color:var(--text)">МЗП с 1 января 2026 = 858 BYN.</strong> Порог 12 МЗП = 10 296 BYN/год. Теперь ФСЗН сам рассчитывает сумму по данным от МНС и присылает готовый платёжный документ.</p>
+    <table class="fszn-table">
+      <tr><th>Ваш чистый доход за год</th><th>Расчёт взносов</th><th>Итог ФСЗН/год</th></tr>
+      <tr><td>Меньше 10 296 BYN</td><td>Доход × 35%</td><td>До 3 603 BYN</td></tr>
+      <tr><td>10 296 BYN и выше</td><td>10 296 × 35%</td><td>= 3 603,60 BYN</td></tr>
+    </table>
+    <p style="font-size:.82rem;color:var(--muted);margin-top:.75rem;margin-bottom:0">Срок уплаты перенесён: теперь <strong style="color:var(--text)">до 31 марта</strong> следующего года (ранее — 1 марта). Оплата через ЕРИП или личный кабинет ssf.gov.by. Форму ПУ-3 подавать больше не нужно — ФСЗН заполняет сам.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="calculator">
+  <div class="section-label reveal">Инструмент</div>
+  <h2 class="reveal">КАЛЬКУЛЯТОР<br>ПРИБЫЛИ 2026</h2>
+  <div class="calc-wrapper reveal">
+    <div class="calc-grid">
+      <div class="field"><label>Цена продажи (BYN)</label><input type="number" id="c-price" value="50" min="1"></div>
+      <div class="field"><label>Себестоимость товара (BYN)</label><input type="number" id="c-cost" value="20" min="0"></div>
+      <div class="field"><label>Продаж в месяц</label><input type="number" id="c-qty" value="100" min="1"></div>
+      <div class="field"><label>Комиссия платформы (%)</label><input type="number" id="c-commission" value="15" min="1" max="40"></div>
+      <div class="field"><label>Логистика за единицу (BYN)</label><input type="number" id="c-logistics" value="1.5" step="0.1" min="0"></div>
+      <div class="field"><label>Налог</label>
+        <select id="c-tax">
+          <option value="6">УСН 6% (от выручки)</option>
+          <option value="16">УСН 16% (от прибыли)</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="calcProfit()" style="margin-bottom:1.5rem">Рассчитать ▶</button>
+    <div class="calc-result">
+      <div class="result-item">
+        <div class="result-num positive" id="res-revenue">—</div>
+        <div class="result-label">Выручка в месяц</div>
+      </div>
+      <div class="result-item">
+        <div class="result-num neutral" id="res-expenses">—</div>
+        <div class="result-label">Расходы (все)</div>
+      </div>
+      <div class="result-item">
+        <div class="result-num positive" id="res-profit">—</div>
+        <div class="result-label">Чистая прибыль</div>
+      </div>
+      <div class="result-item">
+        <div class="result-num neutral" id="res-margin">—</div>
+        <div class="result-label">Маржа %</div>
+      </div>
+    </div>
+    <p style="font-size:.78rem;color:var(--muted);margin-top:1rem">* ФСЗН 2026: минимум 3 603 BYN/год (при доходе ≥ 10 296 BYN) — уплачивается раз в год до 31 марта, не включён в помесячный расчёт. Добавьте ~300 BYN/мес для точности.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="checklist">
+  <div class="section-label reveal">Инструмент</div>
+  <h2 class="reveal">ЧЕКЛИСТ<br>СТАРТА 2026</h2>
+  <div class="progress-text reveal" id="prog-text">Выполнено: 0 / 20</div>
+  <div class="progress-bar-wrap reveal"><div class="progress-bar" id="prog-bar" style="width:0%"></div></div>
+  <div class="checklist reveal" id="checklist-container"></div>
+</section>
+
+<hr class="divider">
+
+<section id="tips">
+  <div class="section-label reveal">Лайфхаки</div>
+  <h2 class="reveal">СЕКРЕТЫ<br>УСПЕШНЫХ ПРОДАВЦОВ</h2>
+  <div class="tip-grid reveal">
+    <div class="tip-card"><div class="tip-icon">📸</div><h3>Инфографика — это деньги</h3><p style="font-size:.9rem">Карточки с текстом прямо на фото конвертируют в 2–3 раза лучше. Добавьте размеры, состав, преимущества на первые 3 фото.</p></div>
+    <div class="tip-card"><div class="tip-icon">📊</div><h3>Юнит-экономика до закупки</h3><p style="font-size:.9rem">Считайте прибыльность до трат. Учитывайте: закупка + логистика + комиссия + реклама + хранение + налог + ФСЗН.</p></div>
+    <div class="tip-card"><div class="tip-icon">🔄</div><h3>Выкупаемость решает всё</h3><p style="font-size:.9rem">Высокий % возвратов топит карточку в поиске. Точно описывайте товар и указывайте реальные размеры.</p></div>
+    <div class="tip-card"><div class="tip-icon">💬</div><h3>Отвечайте на отзывы всегда</h3><p style="font-size:.9rem">Ответы на отзывы влияют на ранжирование. Негативный отзыв с грамотным ответом = рост доверия.</p></div>
+    <div class="tip-card"><div class="tip-icon">🏭</div><h3>«Сделано в Беларуси» — козырь</h3><p style="font-size:.9rem">Льняные изделия, деревообработка, натуральная косметика — сильные ниши с меньшей конкуренцией.</p></div>
+    <div class="tip-card"><div class="tip-icon">📅</div><h3>Следите за налоговым календарём</h3><p style="font-size:.9rem">Декларация — до 20-го числа после квартала. ФСЗН — до 31 марта следующего года. Штрафы за просрочку серьёзные.</p></div>
+  </div>
+</section>
+
+<footer>
+  <p>Сделано с ❤️ для белорусских предпринимателей · Версия 1</p>
+  <p style="margin-top:.5rem">Данные актуальны на <span>2026 год</span> · <span>nalog.gov.by</span> · <span>ssf.gov.by</span> · <span>egry.by</span></p>
+</footer>
+
+<script>
+'use strict';
+
+// ── CALCULATOR ──
+function calcProfit() {
+  var price = parseFloat(document.getElementById('c-price').value) || 0;
+  var cost  = parseFloat(document.getElementById('c-cost').value) || 0;
+  var qty   = parseFloat(document.getElementById('c-qty').value) || 0;
+  var comm  = parseFloat(document.getElementById('c-commission').value) || 0;
+  var log   = parseFloat(document.getElementById('c-logistics').value) || 0;
+  var taxMode = document.getElementById('c-tax').value;
+
+  var revenue  = price * qty;
+  var commAmt  = revenue * comm / 100;
+  var logAmt   = log * qty;
+  var costAmt  = cost * qty;
+  var taxAmt;
+
+  if (taxMode === '6') {
+    taxAmt = revenue * 0.06;
+  } else {
+    var gross = revenue - commAmt - logAmt - costAmt;
+    taxAmt = Math.max(0, gross * 0.16);
+  }
+
+  var totalExp = commAmt + logAmt + costAmt + taxAmt;
+  var profit   = revenue - totalExp;
+  var margin   = revenue > 0 ? (profit / revenue * 100) : 0;
+
+  var revEl  = document.getElementById('res-revenue');
+  var expEl  = document.getElementById('res-expenses');
+  var profEl = document.getElementById('res-profit');
+  var margEl = document.getElementById('res-margin');
+
+  if (!revEl || !expEl || !profEl || !margEl) return;
+
+  revEl.textContent  = revenue.toFixed(0) + ' BYN';
+  expEl.textContent  = totalExp.toFixed(0) + ' BYN';
+  profEl.textContent = profit.toFixed(0) + ' BYN';
+  profEl.className   = 'result-num ' + (profit >= 0 ? 'positive' : 'negative');
+  margEl.textContent = margin.toFixed(1) + '%';
+  margEl.className   = 'result-num ' + (margin > 15 ? 'positive' : margin > 0 ? 'neutral' : 'negative');
+}
+
+// ── CHECKLIST DATA 2026 ──
+var items = [
+  { cat:'📋 Юридическое оформление', text:'Зарегистрировать ИП', sub:'EGRY.BY или МФЦ, ~1 рабочий день, ~25 BYN госпошлина' },
+  { cat:null, text:'Подать заявление на УСН в ИМНС', sub:'В течение 20 дней после регистрации. Лимит УСН 2026: 3 735 000 BYN/год' },
+  { cat:null, text:'Открыть расчётный счёт', sub:'Альфа-Банк, МТБанк, Приорбанк — сравните тарифы для ИП' },
+  { cat:null, text:'Получить ЭЦП', sub:'РУЦ ГосСУОК (rca.by): ~100 BYN/год, 3 рабочих дня' },
+  { cat:'🛍️ Выбор товара', text:'Провести анализ ниши', sub:'MPStats, Moneyplace — минимум 2 недели наблюдения' },
+  { cat:null, text:'Рассчитать юнит-экономику', sub:'Закупка + логистика + комиссия + налог + ФСЗН < цены продажи × 0.75' },
+  { cat:null, text:'Найти поставщика', sub:'РБ-производители, 1688.com с посредником, оптовые базы Минска' },
+  { cat:null, text:'Заказать тестовую партию 30–50 шт', sub:'Не рискуйте сразу крупными вложениями' },
+  { cat:'🖥️ Регистрация на платформе', text:'Создать аккаунт продавца WB / OZON', sub:'seller.wildberries.by или seller.ozon.ru' },
+  { cat:null, text:'Подписать оферту (через ЭЦП)', sub:'Прочитайте условия — особенно штрафы и политику акций' },
+  { cat:null, text:'Настроить реквизиты для выплат', sub:'Деньги придут на расчётный счёт ИП' },
+  { cat:'📦 Подготовка карточки', text:'Сделать профессиональные фото', sub:'5+ фото: белый фон + lifestyle + инфографика с текстом' },
+  { cat:null, text:'Написать SEO-описание', sub:'Ключевые слова из поиска WB/OZON + все характеристики' },
+  { cat:null, text:'Нанести штрихкоды / этикетки', sub:'Соответствие требованиям маркетплейса — строго' },
+  { cat:'🚀 Запуск продаж', text:'Сделать первую отгрузку FBS', sub:'Хранение у себя + привоз в ПВЗ при получении заказа' },
+  { cat:null, text:'Запустить внутреннюю рекламу', sub:'Автокампания, бюджет 50–100 BYN на тест' },
+  { cat:null, text:'Получить первые 5+ отзывов', sub:'Попросить знакомых — это легально' },
+  { cat:'📊 Контроль и отчётность', text:'Отслеживать аналитику еженедельно', sub:'CTR, конверсия, выкупаемость, позиции в поиске' },
+  { cat:null, text:'Сдать квартальную декларацию УСН', sub:'До 20-го числа после квартала через nalog.gov.by' },
+  { cat:null, text:'Уплатить ФСЗН за год', sub:'До 31 марта следующего года через ssf.gov.by или ЕРИП' },
+];
+
+var done = new Set();
+try {
+  var saved = localStorage.getItem('cl-v1-2026');
+  if (saved) done = new Set(JSON.parse(saved));
+} catch(e) {}
+
+function saveDone() {
+  try { localStorage.setItem('cl-v1-2026', JSON.stringify(Array.from(done))); } catch(e) {}
+}
+
+function renderChecklist() {
+  var container = document.getElementById('checklist-container');
+  var progBar   = document.getElementById('prog-bar');
+  var progText  = document.getElementById('prog-text');
+  if (!container) return;
+
+  container.innerHTML = '';
+
+  items.forEach(function(item, i) {
+    if (item.cat) {
+      var catEl = document.createElement('div');
+      catEl.className = 'check-category';
+      catEl.textContent = item.cat;
+      container.appendChild(catEl);
+    }
+    var el = document.createElement('div');
+    el.className = 'check-item' + (done.has(i) ? ' done' : '');
+    el.innerHTML =
+      '<div class="check-box">' + (done.has(i) ? '✓' : '') + '</div>' +
+      '<div>' +
+        '<div class="check-text">' + item.text + '</div>' +
+        '<div class="check-sub">' + item.sub + '</div>' +
+      '</div>';
+    el.onclick = function(idx) {
+      return function() {
+        done.has(idx) ? done.delete(idx) : done.add(idx);
+        saveDone();
+        renderChecklist();
+      };
+    }(i);
+    container.appendChild(el);
+  });
+
+  var pct = Math.round(done.size / items.length * 100);
+  if (progBar)  progBar.style.width = pct + '%';
+  if (progText) progText.textContent = 'Выполнено: ' + done.size + ' / ' + items.length + ' (' + pct + '%)';
+}
+
+// ── SCROLL REVEAL ──
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+
+// ── INIT after DOM ready ──
+document.addEventListener('DOMContentLoaded', function() {
+  renderChecklist();
+  calcProfit();
+});
+</script>
+</body>
+</html>
